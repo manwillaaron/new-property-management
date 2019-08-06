@@ -1,0 +1,99 @@
+.renter-dash-container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex:1;
+}
+
+.picture-button-container{
+    width: 90%;
+    display: flex;
+    /* justify-content: space-between; */
+    flex-wrap: wrap;
+
+
+}
+
+.rows-renter{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: .5%;
+
+}
+
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: solid 1px rgb(147, 164, 147);
+    border-radius: 5px;
+    padding: 10px;
+
+  }
+.centered:hover {
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+
+  }
+
+
+.centered1 {
+    position: absolute;
+    top: 52%;
+    left: 51%;
+    transform: translate(-50%, -50%);
+    border:solid 1px rgb(147, 164, 147);
+    border-radius: 5px;
+    padding: 10px;
+  }
+
+.centered1:hover {
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  }
+
+
+.picture-buttons{
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    display: flex;
+    width: 49%;
+    height: 400px;
+    position: relative;
+    text-align: center;
+    color: rgb(47, 53, 50);
+    font-size: 40px;
+    font-weight: bolder
+
+}
+.picture-buttons1{
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    display: flex;
+    width: 49%;
+    height: 400px;
+    position: relative;
+    text-align: center;
+    color: rgb(114, 128, 121);
+    font-size: 40px;
+    font-weight: bolder
+
+}
+.picture-buttons2{
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    display: flex;
+    width: 49%;
+    height: 400px;
+    position: relative;
+    text-align: center;
+    color: rgb(191, 211, 201);
+    font-size: 40px;
+    font-weight: bolder
+
+}
+
+.picture-buttons-admin:hover{
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}

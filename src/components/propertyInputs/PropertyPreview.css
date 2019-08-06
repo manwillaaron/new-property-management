@@ -1,0 +1,89 @@
+.img{
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    width:100%;
+    max-width: 500px;
+    height: auto;
+    max-height:  313px; 
+    display: flex;
+    align-items: center
+}
+
+.img:hover{
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+
+}
+
+@media only screen and (max-width: 1100px){
+.img{
+        width:100%;
+        max-width: 375px;
+        height: auto;
+        max-height:  235px; 
+        display: flex;
+        align-items: center
+    }
+}
+@media only screen and (max-width: 750px){
+    .img{
+        width:100%;
+        max-width: 300px;
+        height: auto;
+        max-height:  188px; 
+        display: flex;
+        align-items: center
+    }
+}
+@media only screen and (max-width: 608px){
+    .img{
+        width:100%;
+        max-width: 200px;
+        height: auto;
+        max-height:  126px; 
+        display: flex;
+        align-items: center
+    }
+}
+
+.property-name-preview{
+    display: flex;
+
+}
+
+
+.prop{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    border:solid 1px  rgb(147, 164, 147);
+    border-radius: 15%;
+    
+}
+
+.property-preview-button-container{
+    max-height: 10%;
+    width: 100%;
+    position: relative;
+    bottom:20%;
+    display: flex;
+    justify-content: center;
+}
+
+.property-preview-buttons{
+    background: rgb(214, 225, 214);
+    font-size: 50%;
+    border-radius: 10%;
+    max-width: 40%;
+    height: 100%;
+    margin-right: 2px
+
+}
+
+.property-preview-links{
+    
+    text-decoration: none;
+    color: black
+}
