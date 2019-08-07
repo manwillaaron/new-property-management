@@ -94,6 +94,28 @@ export function editProperties(
   img_url5,
   property_name
 ) {
+console.log(  'reducer data hit',
+  propertyId,
+  address,
+  num_beds,
+  num_baths,
+  square_footage,
+  acreage,
+  rent,
+  gas_company,
+  electric_company,
+  has_renter,
+  fridge_included,
+  dishwasher_included,
+  washer_dryer_included,
+  mortgage,
+  tax_yearly,
+  img_url,
+  img_url2,
+  img_url3,
+  img_url4,
+  img_url5,
+  property_name);
   let data = axios
     .put(`/api/properties/${propertyId}`, {
       address,
@@ -117,7 +139,9 @@ export function editProperties(
       img_url5,
       property_name
     })
-    .then(res => res.data);
+    .then(res => { 
+      console.log('res.data reducer',res.data);
+      return res.data});
   return {
     type: EDIT_PROPERTY,
     payload: data

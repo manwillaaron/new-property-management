@@ -47,24 +47,32 @@ class Renter extends Component {
         <div>
           <h3>First Name</h3>
           <input
+            className="renter-inputs"
             onChange={this.handleChange}
             name="first_name"
             value={first_name}
           />
           <h3>Last Name</h3>
           <input
+            className="renter-inputs"
             onChange={this.handleChange}
             name="last_name"
             value={last_name}
           />
           <h3>Phone Number</h3>
           <input
+            className="renter-inputs"
             onChange={this.handleChange}
             name="phone_number"
             value={phone_number}
           />
           <h3>Email</h3>
-          <input onChange={this.handleChange} name="email" value={email} />
+          <input
+            className="renter-inputs"
+            onChange={this.handleChange}
+            name="email"
+            value={email}
+          />
           <button
             onClick={() =>
               this.props.addRenter(

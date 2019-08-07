@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-// import './App.css';
+import './ChatDisplay.css';
 // import SocketView from '../socketView/SocketView';
 import Chat from '../chat/Chat';
 import Header from "../header/Header";
@@ -7,11 +7,11 @@ import Header from "../header/Header";
 class ChatDisplay extends Component{
     render(){
         return (
-            <div className='App'>
+            <div className='chat-display'>
             <Header/>
             {console.log(this.props)}
                 {/* <SocketView /> */}
-                <Chat admin_id = {this.props.match.params}/>
+                <Chat admin_id={this.props.match.params}/>
             </div>
         );
     } 

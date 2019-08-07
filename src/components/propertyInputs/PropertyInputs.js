@@ -28,8 +28,8 @@ class PropertyInputs extends Component {
       fridge_included: "",
       dishwasher_included: "",
       washer_dryer_included: "",
-      mortgage: "",
-      tax_yearly: "",
+      mortgage: null,
+      tax_yearly: null,
       img_url: "",
       img_url2: "",
       img_url3: "",
@@ -96,9 +96,37 @@ class PropertyInputs extends Component {
     this.setState({ editing: !this.state.editing });
   };
 
+  enter = ev => {
+    console.log(`Pressed keyCode ${ev.key}`);
+    if (ev.key === "Enter") {
+      this.props.addProperty(
+        this.state.address,
+        this.state.num_beds,
+        this.state.num_baths,
+        this.state.square_footage,
+        this.state.acreage,
+        this.state.rent,
+        this.state.gas_company,
+        this.state.electric_company,
+        this.state.has_renter,
+        this.state.fridge_included,
+        this.state.dishwasher_included,
+        this.state.washer_dryer_included,
+        this.state.mortgage,
+        this.state.tax_yearly,
+        this.state.img_url,
+        this.state.img_url2,
+        this.state.img_url3,
+        this.state.img_url4,
+        this.state.img_url5,
+        this.state.property_name
+      );
+      ev.preventDefault();
+    }
+  };
+
   render() {
-    if (!this.props.admin_id) return <Redirect to="/login" />;
-    // if (JSON.parse(this.props.admin.admin.renterCheck) === true) return <Redirect to="/renter" />;
+    console.log(this.props);
     let {
       address,
       num_beds,
@@ -121,6 +149,10 @@ class PropertyInputs extends Component {
       img_url5,
       property_name
     } = this.state;
+    let { loggedIn, renterCheck } = this.props.admin.admin;
+    if (!loggedIn) return <Redirect to="/login" />;
+
+    if (Boolean(renterCheck) === true) return <Redirect to="/renter" />;
 
     return (
       <div>
@@ -128,91 +160,142 @@ class PropertyInputs extends Component {
         <div>
           <h2>Property Name</h2>
           <input
+          className='property-inputs'
             value={property_name}
             onChange={this.handleChange}
             name="property_name"
           />
         </div>
         <h2>Address</h2>
-        <input value={address} onChange={this.handleChange} name="address" />
+        <input
+        className='property-inputs'
+          onKeyPress={() => this.enter()}
+          value={address}
+          onChange={this.handleChange}
+          name="address"
+        />
         <h2>Bedrooms</h2>
-        <input value={num_beds} onChange={this.handleChange} name="num_beds" />
+        <input className='property-inputs' value={num_beds} onChange={this.handleChange} name="num_beds" />
         <h2>Bathrooms</h2>
         <input
+          className="property-inputs"
           value={num_baths}
           onChange={this.handleChange}
           name="num_baths"
         />
         <h2>Square Footage</h2>
         <input
+          className="property-inputs"
           value={square_footage}
           onChange={this.handleChange}
           name="square_footage"
         />
         <h2>Acreage</h2>
-        <input value={acreage} onChange={this.handleChange} name="acreage" />
+        <input
+          className="property-inputs"
+          value={acreage}
+          onChange={this.handleChange}
+          name="acreage"
+        />
         <h2>Rent</h2>
-        <input value={rent} onChange={this.handleChange} name="rent" />
+        <input
+          className="property-inputs"
+          value={rent}
+          onChange={this.handleChange}
+          name="rent"
+        />
         <h2>Gas Company</h2>
         <input
+          className="property-inputs"
           value={gas_company}
           onChange={this.handleChange}
           name="gas_company"
         />
         <h2>Electric Company</h2>
         <input
+          className="property-inputs"
           value={electric_company}
           onChange={this.handleChange}
           name="electric_company"
         />
         <h2>Has Renter</h2>
         <input
+          className="property-inputs"
           value={has_renter}
           onChange={this.handleChange}
           name="has_renter"
         />
         <h2>Fridge?</h2>
         <input
+          className="property-inputs"
           value={fridge_included}
           onChange={this.handleChange}
           name="fridge_included"
         />
         <h2>Diswasher?</h2>
         <input
+          className="property-inputs"
           value={dishwasher_included}
           onChange={this.handleChange}
           name="dishwasher_included"
         />
         <h2>Washer and Dryer?</h2>
         <input
+          className="property-inputs"
           value={washer_dryer_included}
           onChange={this.handleChange}
           name="washer_dryer_included"
         />
         <h2>Mortgage</h2>
-        <input value={mortgage} onChange={this.handleChange} name="mortgage" />
+        <input
+          className="property-inputs"
+          value={mortgage}
+          onChange={this.handleChange}
+          name="mortgage"
+        />
         <h2>Taxes</h2>
         <input
+          className="property-inputs"
+          // onKeyPress={()=> this.enter()}
           value={tax_yearly}
           onChange={this.handleChange}
           name="tax_yearly"
         />
         <h2>Image 1</h2>
-        <input value={img_url} onChange={this.handleChange} name="img_url" />
+        <input
+          className="property-inputs"
+          // onKeyPress={()=> this.enter()}
+          value={img_url}
+          onChange={this.handleChange}
+          name="img_url"
+        />
         <h2>Image 2</h2>
-        <input value={img_url2} onChange={this.handleChange} name="img_url2" />
+        <input className='property-inputs' value={img_url2} onChange={this.handleChange} name="img_url2" />
         <h2>Image 3</h2>
-        <input value={img_url3} onChange={this.handleChange} name="img_url3" />
+        <input className='property-inputs' value={img_url3} onChange={this.handleChange} name="img_url3" />
         <h2>Image 4</h2>
-        <input value={img_url4} onChange={this.handleChange} name="img_url4" />
+        <input
+          className="property-inputs"
+          // onKeyPress={()=> this.enter()}
+          value={img_url4}
+          onChange={this.handleChange}
+          name="img_url4"
+        />
         <h2>Image 5</h2>
-        <input value={img_url5} onChange={this.handleChange} name="img_url5" />
+        <input
+          className="property-inputs"
+          // onKeyPress={()=> this.enter()}
+          value={img_url5}
+          onChange={this.handleChange}
+          name="img_url5"
+        />
 
         {this.state.editing ? (
           <div>
             <button
-              onClick={() =>
+              onClick={() => {
                 this.props.editProperties(
+                  this.props.match.params.prop_id,
                   this.state.address,
                   this.state.num_beds,
                   this.state.num_baths,
@@ -233,8 +316,32 @@ class PropertyInputs extends Component {
                   this.state.img_url4,
                   this.state.img_url5,
                   this.state.property_name
-                )
-              }
+                );
+                console.log(
+                  this.props,
+                  "lllooonnnnggggcccllgg",
+                  this.state.address,
+                  this.state.num_beds,
+                  this.state.num_baths,
+                  this.state.square_footage,
+                  this.state.acreage,
+                  this.state.rent,
+                  this.state.gas_company,
+                  this.state.electric_company,
+                  this.state.has_renter,
+                  this.state.fridge_included,
+                  this.state.dishwasher_included,
+                  this.state.washer_dryer_included,
+                  this.state.mortgage,
+                  this.state.tax_yearly,
+                  this.state.img_url,
+                  this.state.img_url2,
+                  this.state.img_url3,
+                  this.state.img_url4,
+                  this.state.img_url5,
+                  this.state.property_name
+                );
+              }}
             >
               <Link to={`/`}>Save Changes</Link>
             </button>
@@ -243,6 +350,28 @@ class PropertyInputs extends Component {
           <button
             onClick={() => {
               this.props.addProperty(
+                this.state.address,
+                this.state.num_beds,
+                this.state.num_baths,
+                this.state.square_footage,
+                this.state.acreage,
+                this.state.rent,
+                this.state.gas_company,
+                this.state.electric_company,
+                this.state.has_renter,
+                this.state.fridge_included,
+                this.state.dishwasher_included,
+                this.state.washer_dryer_included,
+                this.state.mortgage,
+                this.state.tax_yearly,
+                this.state.img_url,
+                this.state.img_url2,
+                this.state.img_url3,
+                this.state.img_url4,
+                this.state.img_url5,
+                this.state.property_name
+              );
+              console.log(
                 this.state.address,
                 this.state.num_beds,
                 this.state.num_baths,
@@ -276,6 +405,7 @@ class PropertyInputs extends Component {
 
 function mapStateToProps(state) {
   return {
+    admin: state.admin,
     admin_id: state.admin.admin.id,
     ...state.renters,
     ...state.properties

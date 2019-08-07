@@ -15,9 +15,9 @@ function App() {
       <PersistGate loading = {null } persistor= {persistor}>
         <HashRouter>
           
-    <div className='main-container'>
+    {/* <div className='main-container'> */}
      {routes}
-    </div>
+    {/* </div> */}
         </HashRouter>
 
       </PersistGate>

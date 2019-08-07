@@ -79,7 +79,7 @@ class RenterDashboard extends Component {
 
           <Link
             className="picture-buttons"
-            to={`/propertymanager/chat/${propObj.admin_id}`}
+            to={`/propertymanager/chat/${this.props.admin.admin.id}`}
             onClick={() => console.log("clicked")}
             style={{
               // width: "200px",

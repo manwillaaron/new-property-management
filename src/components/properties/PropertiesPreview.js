@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import {Redirect} from 'react-router-dom'
 import "./PropertiesPreview.css";
 import { connect } from "react-redux";
 import { getProperties } from "../../redux/propertiesReducer";
@@ -27,6 +28,10 @@ class PropertiesPreview extends Component {
   }
 
   render() {
+    let { loggedIn, renterCheck } = this.props.admin.admin;
+    console.log(this.props);
+    if (!loggedIn) return <Redirect to="/login" />;
+    if (Boolean(renterCheck) === true) return <Redirect to="/renter" />;
     const { properties } = this.props;
     return (
       <div className="map-container">
@@ -46,6 +51,7 @@ class PropertiesPreview extends Component {
 
 function mapStateToProps(state) {
   return {
+    admin: state.admin,
     adminId: state.admin.admin.id,
     ...state.properties,
     renters: state.renters.renters

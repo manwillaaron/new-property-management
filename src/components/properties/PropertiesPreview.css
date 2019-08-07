@@ -1,48 +1,45 @@
-.map-container{
-    width:100%;
-    height: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
+.map-container {
+  width: 100%;
+flex:1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
     justify-content: center;
 }
 
-.prop-container{
-    width: 500px;
-    height: 425px;
-    margin-top: 10px;
-    margin-bottom: 3%;
-    margin-left: 5px;
+.prop-container {
+  width: 500px;
+  height: 425px;
+  margin-top: 10px;
+  margin-bottom: 3%;
+  margin-left: 5px;
 }
 
-@media only screen and (max-width: 1100px){
-.prop-container{
+@media only screen and (max-width: 1100px) {
+  .prop-container {
     width: 375px;
     height: 325px;
     margin-top: 10px;
     margin-bottom: 3%;
     margin-left: 5px;
-}
+  }
 }
 
-@media only screen and (max-width: 750px){
-    .prop-container{
-        width: 300px;
-        height:250px;
-        margin-top: 10px;
-        margin-bottom: 3%;
-        margin-left: 5px;
-        
-    }
-        
+@media only screen and (max-width: 750px) {
+  .prop-container {
+    width: 300px;
+    height: 250px;
+    margin-top: 10px;
+    margin-bottom: 3%;
+    margin-left: 5px;
+  }
 }
-@media only screen and (max-width: 608px){
-    .prop-container{
-        width: 200px;
-        height: 175px;
-        margin-top: 10px;
-        margin-bottom: 3%;
-        margin-left: 5px;
-    }
-        
+@media only screen and (max-width: 608px) {
+  .prop-container {
+    width: 200px;
+    height: 175px;
+    margin-top: 10px;
+    margin-bottom: 3%;
+    margin-left: 5px;
+  }
 }

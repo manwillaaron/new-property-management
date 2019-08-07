@@ -9,14 +9,16 @@ class Header extends Component {
   render() {
     return (
       <div className="header">
-        <div />
+        <div className='spacer-header' />
         <div className="header-title-container">
           <img src={logo} className="header-title" alt='RentOps'/>
         </div>
 
         <div className="header-button-container">
           <Link
-            onClick={e => this.props.signout(this.props.admin.admin_id)}
+            onClick={async e => this.props.signout()
+              
+            }
             className="header-buttons"
             to="/login"
           >

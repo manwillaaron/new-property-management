@@ -1,0 +1,235 @@
+.chat {
+  width: 100%;
+  height: 100%;
+    margin:5px 5px 5px 5px;
+}
+
+.input-button-sendmsg {
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-height: 300px;
+  flex: 1;
+  font-size: 18px;
+  border-bottom: solid 1px rgb(147, 164, 147)
+}
+
+.input-send-message {
+  max-height: 75px;
+  min-height: 38px;
+  width: 30%;
+  border: solid 0.2px rgb(147, 164, 147);
+  font-size: 18px;
+  
+}
+
+.send-message {
+background: rgb(147, 164, 147);
+}
+
+.message-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.reciver-messages-container {
+  width: 100%;
+  min-height: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 3px;
+  margin-top: 5px;
+  font-size: 10px;
+}
+.sender-messages-container {
+  width: 100%;
+  min-height: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 3px;
+  margin-top: 5px;
+  font-size: 10px;
+}
+
+.reciver-message-box {
+  padding: 3px;
+  width: 30%;
+  min-height: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  border: solid 1px rgb(147, 164, 147);
+  color: rgb(71, 71, 71);
+  background: rgb(231, 233, 231);
+  border-radius: 5px;
+  padding: 3px;
+  margin-top: 5px;
+  margin-left:30px;
+  font-size: 25px;
+  align-self: flex-start;
+}
+
+.sender-message-box {
+  padding: 3px;
+  background: rgb(147, 164, 147);
+  width: 30%;
+  min-height: 60px;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  border: solid 1px rgb(147, 164, 147);
+  color: rgb(71, 71, 71);
+  border-radius: 5px;
+  padding: 3px;
+  margin-top: 5px;
+  margin-right:40px;
+  font-size: 25px;
+  align-self: flex-end;
+}
+
+.sender-delete-info {
+  color: rgb(71, 71, 71);
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+}
+.reciver-delete-info {
+  color: rgb(71, 71, 71);
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.sender-name {
+  height: 10px;
+  width: 10%;
+  display: flex;
+  font-size: 10px;
+  align-items: center;
+}
+
+.reciver-name {
+  height: 10px;
+  width: 10%;
+  display: flex;
+  font-size: 10px;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.sender-delete-btn {
+  width: 40%;
+  color: rgb(230, 238, 230);
+  border: none;  
+  background: transparent;
+  margin-right: 40px;
+  align-self: flex-end;
+  justify-self: flex-end;
+}
+
+.sender-delete-btn:hover{
+  color: rgb(71, 71, 71);
+} 
+.reciver-delete-btn:hover{
+  color: rgb(71, 71, 71);
+} 
+
+.reciver-delete-btn {
+  width: 40%;
+  color: rgb(214, 223, 214);
+  border: none;
+  margin-left: 30px;
+  background: transparent;
+  align-self: flex-start;
+  justify-self: flex-start;
+}
+
+@media only screen and (max-width: 800px) {
+  .reciver-message-box {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    border: solid 1px rgb(147, 164, 147);
+    border-radius: 5px;
+    
+    padding: 3px;
+    margin-top: 5px;
+    font-size: 20px;
+    align-self: flex-start;
+  }
+  .sender-message-box {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    border: solid 1px rgb(147, 164, 147);
+    border-radius: 5px;
+    padding: 3px;
+    margin-top: 5px;
+    font-size: 20px;
+    align-self: flex-end;
+  }
+
+  .sender-delete-info {
+    width: 40%;
+    display: flex;
+    justify-content: space-around;
+    align-self: flex-end;
+  }
+  .reciver-delete-info {
+    width: 40%;
+    display: flex;
+    justify-content: space-around;
+    align-self: flex-start;
+  }
+}
+@media only screen and (max-width: 470px) {
+  .reciver-message-box {
+    width: 56%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    border: solid 1px rgb(147, 164, 147);
+    border-radius: 5px;
+    padding: 3px;
+    margin-top: 5px;
+    font-size: 15px;
+    align-self: flex-start;
+  }
+  .sender-message-box {
+    width: 56%;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: flex-end; */
+    border: solid 1px rgb(147, 164, 147);
+    border-radius: 5px;
+    padding: 3px;
+    margin-top: 5px;
+    font-size: 15px;
+    align-self: flex-end;
+  }
+
+  .sender-delete-info {
+    width: 40%;
+    display: flex;
+    justify-content: space-around;
+    align-self: flex-end;
+  }
+  .reciver-delete-info {
+    width: 40%;
+    display: flex;
+    justify-content: space-around;
+    align-self: flex-start;
+  }
+}

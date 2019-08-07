@@ -5,13 +5,8 @@ import { connect } from "react-redux";
 import { getAdmin } from "../../redux/adminReducer";
 import { getProperties } from "../../redux/propertiesReducer";
 import add from "./addHosuse2-01.png";
-import {
-  getChatroomMessages,
-  getAllChatrooms
-} from "../../redux/socketReducer";
-import PropertiesPreview from "../properties/PropertiesPreview";
 import Header from "../header/Header";
-import SMSForm from "../../SMS/SMSForm";
+
 
 class AdminDashboard extends Component {
   async componentDidMount() {
@@ -41,7 +36,7 @@ class AdminDashboard extends Component {
     let { loggedIn, renterCheck } = this.props.admin.admin;
     console.log(this.props);
     if (!loggedIn) return <Redirect to="/login" />;
-    if (JSON.parse(renterCheck) === true) return <Redirect to="/renter" />;
+    if (Boolean(renterCheck) === true) return <Redirect to="/renter" />;
 
     return (
       <div className="admin-dash-container">
@@ -62,7 +57,7 @@ class AdminDashboard extends Component {
                 backgroundRepeat: "no-repeat"
               }}
             >
-              <h1 class="centered-admin">Your Rentals</h1>
+              <h1 className="centered-admin">Your Rentals</h1>
             </Link>
 
             <Link

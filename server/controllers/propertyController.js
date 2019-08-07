@@ -30,21 +30,23 @@ module.exports = {
       img_url5,
       property_name
     } = req.body;
-    const db = req.app.get("db");
+    console.log(
+      "hit reducer", +req.body.mortgage,+req.body.tax_yearly
+    );
+    const db = req.app. get("db");
     let properties = await db.edit_property([
-      propertyId,
       address,
-      num_beds,
-      num_baths,
-      square_footage,
-      acreage,
-      rent,
+      +num_beds,
+      +num_baths,
+      +square_footage,
+      +acreage,
+      +rent,
       gas_company,
       electric_company,
-      JSON.parse(has_renter),
-      JSON.parse(fridge_included),
-      JSON.parse(dishwasher_included),
-      JSON.parse(washer_dryer_included),
+      Boolean(has_renter),
+      Boolean(fridge_included),
+      Boolean(dishwasher_included),
+      Boolean(washer_dryer_included),
       mortgage,
       tax_yearly,
       img_url,
@@ -53,7 +55,7 @@ module.exports = {
       img_url4,
       img_url5,
       property_name,
-      id
+      +propertyId
     ]);
     res.send(properties);
   },

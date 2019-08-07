@@ -117,7 +117,15 @@ class Register extends Component {
             </div>
             <div className="moreinfo-boxes">
               <h1>email: </h1>
-              <input value={email} onChange={this.handleChange} name="email" />
+              <input value={email} onChange={this.handleChange} name="email" 
+              onKeyDown={(ev) => {
+                console.log(`Pressed keyCode ${ev.key}`);
+                if (ev.key === 'Enter') {
+                  this.registerAdmin()
+                  ev.preventDefault();
+                }
+              }}
+              />
             </div>
             <div className="register-button">
                 <button onClick={() => this.registerAdmin()}>

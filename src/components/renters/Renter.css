@@ -8,3 +8,12 @@
 .renter-box{
     width:20%;
 } */
+
+
+@media only screen and (min-width: 600px){
+    .renter-inputs{
+        width:25%;
+    }
+
+}
+

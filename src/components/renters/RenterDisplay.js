@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-// import "./RenterDisplay.css";
+import "./RenterDisplay.css";
 import {
   editProperties,
   addProperty,
@@ -31,27 +31,29 @@ class RenterDisplay extends Component {
     if (!this.props.renters) return this.props.getRenters(this.props.prop_id);
     return (
       <div className="renters-container">
+          
         {this.props.renters.map((renter, a) => (
-          <div className="renter-container" key={renter.admin_id}>
+          <div className="renter-container-display" key={renter.admin_id}>
             <div className="renter-count-container">
-              <h2 className="renter-count">renter {a + 1}</h2>
+              <h2 className="renter-count">Renter {a + 1}</h2>
             </div>
-            <div>
-              <h4>Name</h4>
+            <div className='renter-elements-display'>
+              <h4>Name: </h4>
               <h5>
                 {renter.first_name} {renter.last_name}
               </h5>
             </div>
-            <div>
-              <h4>Phone Number</h4>
+            <div className='renter-elements-display'>
+              <h4>Phone Number: </h4>
               <h5>{renter.phone_number}</h5>
             </div>
-            <div>
-              <h4>Email</h4>
+            <div className='renter-elements-display'>
+              <h4>Email: </h4>
               <h5>{renter.email}</h5>
             </div>
-            <div>
+            <div className='delete-renter-container-display'>
               <button
+              className='delete-renter-display'
                 onClick={() =>
                   this.props.deleteRenter(renter.admin_id, this.props.prop_id)
                 }
@@ -61,12 +63,13 @@ class RenterDisplay extends Component {
             </div>
           </div>
         ))}
-
         <div>
           <button>
             <Link to={`/add/renter/${this.props.prop_id}`}>add renter</Link>
           </button>
         </div>
+
+      
       </div>
     );
   }

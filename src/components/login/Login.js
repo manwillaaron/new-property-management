@@ -56,6 +56,13 @@ class Login extends Component {
                 value={password}
                 onChange={this.handleChange}
                 name="password"
+                onKeyDown={(ev) => {
+                  console.log(`Pressed keyCode ${ev.key}`);
+                  if (ev.key === 'Enter') {
+                    this.props.login(username, password)
+                    ev.preventDefault();
+                  }
+                }}
               />
             </div>
           </div>
