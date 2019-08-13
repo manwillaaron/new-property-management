@@ -16,7 +16,8 @@ import SMSForm from "../../SMS/SMSForm";
 class Properties extends Component {
   componentDidUpdate(pp) {
     if (pp !== this.props || this.props.renters.length === 0) {
-      getRenters(this.props.match.params.prop_id);
+      this.props.getRenters(this.props.match.params.prop_id);
+      
     }
   }
 
@@ -30,16 +31,22 @@ class Properties extends Component {
     if (Boolean(this.props.admin.admin.renterCheck) === true)
       return <Redirect to="/renter" />;
     console.log(this.props);
-    let property = {};
-    if (this.props.properties) {
-      property = this.props.properties.find(
-        property => property.prop_id === +this.props.match.params.prop_id
-      );
-    } else {
-      property = this.props.property.find(
-        property => property.prop_id === +this.props.match.params.prop_id
-      );
-    }
+    // let property = {};
+    // if (this.props.properties) {
+    //   property = this.props.properties.find(
+    //     property => property.prop_id === +this.props.match.params.prop_id
+    //   );
+    // } else {
+    //   property = this.props.property.find(
+    //     property => property.prop_id === +this.props.match.params.prop_id
+    //   );
+
+    let property =  this.props.property.find(
+          property => property.prop_id === +this.props.match.params.prop_id
+        );
+
+
+    
 
     return (
       <div className="more-info-page" key={property.prop_id}>
@@ -48,7 +55,6 @@ class Properties extends Component {
         </div>
         <div className="all-prop-info">
           <div className="property-image-container">
-            {/* <img className="property-image" src={property.img_url} alt="" /> */}
             <Link
             to={`/propertyinput/${this.props.match.params.prop_id}`}
             className="property-image"
@@ -62,7 +68,7 @@ class Properties extends Component {
           </div>
           <div className="prop-info-only">
             <div className="general-info-items-prop">
-              <h2>property name</h2>
+              <h2>Property Name</h2>
               <h3>{property.property_name}</h3>
             </div>
             <div className="general-info-items-prop">
@@ -102,7 +108,7 @@ class Properties extends Component {
               <h3>{JSON.stringify(property.has_renter)}</h3>
             </div>
             <div className="general-info-items-prop">
-              <h2>Fidge?</h2>
+              <h2>Fridge?</h2>
               <h3>{JSON.stringify(property.fridge_included)}</h3>
             </div>
             <div className="general-info-items-prop">

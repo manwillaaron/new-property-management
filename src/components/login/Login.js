@@ -42,7 +42,7 @@ class Login extends Component {
             <div className="username">
               <h1>Username:</h1>
               <input
-                className="input"
+                className="input1"
                 value={username}
                 onChange={this.handleChange}
                 name="username"
@@ -52,7 +52,7 @@ class Login extends Component {
               <h1>Password: </h1>
               <input
                 type="password"
-                className="input"
+                className="input2"
                 value={password}
                 onChange={this.handleChange}
                 name="password"

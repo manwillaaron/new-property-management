@@ -6,6 +6,8 @@ import renterReducer from "./renterReducer";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import socketReducer from "./socketReducer";
+import { composeWithDevTools} from 'redux-devtools-extension';
+
 
 const rootReducer = combineReducers({
   admin: adminReducer,
@@ -23,9 +25,12 @@ const persistedReducer = persistReducer(persistconfig, rootReducer);
 
 export const store = createStore(
   persistedReducer,
-  window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__(
-    applyMiddleware(promiseMiddleware)
-  )
+  composeWithDevTools(applyMiddleware(promiseMiddleware))
 );
+
+
+// export const store = createStore(composeWithDevTools(
+//   adminReducer, applyMiddleware(promiseMiddleware),
+// ));
 
 export const persistor = persistStore(store)

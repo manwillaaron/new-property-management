@@ -19,7 +19,7 @@ class Header extends Component {
             onClick={async e => this.props.signout()
               
             }
-            className="header-buttons"
+            className="header-button-logout"
             to="/login"
           >
             {" "}

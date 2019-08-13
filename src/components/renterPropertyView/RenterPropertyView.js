@@ -42,37 +42,39 @@ class RenterPropertyView extends Component {
         <Header />
         <div className="property-info-container">
           <div className="property-images">
-            <img src={property.img_url} alt="" />
+            <img className="prop-img-renter" src={property.img_url} alt="" />
           </div>
-          <div className="general-information">
+        <div className='info-container-rent'>
+          <div className="general-info-items-prop-renter">
             <h2>property name</h2>
             <h3>{property.address}</h3>
-            <div>
-              <h2>Bedrooms</h2>
-              <h3>{property.num_beds}</h3>
-            </div>
-            <div>
-              <h2>Bathrooms</h2>
-              <h3>{property.num_baths}</h3>
-            </div>
-            <div>
-              <h2>Square Footage</h2>
-              <h3>{property.square_footage}</h3>
-            </div>
-            <div>
-              <h2>Acres</h2>
-              <h3>{property.acreage}</h3>
-            </div>
-            <div>
-              <h2>Rent</h2>
-              <h3>{property.rent}</h3>
-            </div>
           </div>
-          <div className="utility-information">
+          <div className="general-info-items-prop-renter">
+            <h2>Bedrooms</h2>
+            <h3>{property.num_beds}</h3>
+          </div>
+          <div className="general-info-items-prop-renter">
+            <h2>Bathrooms</h2>
+            <h3>{property.num_baths}</h3>
+          </div>
+          <div className="general-info-items-prop-renter">
+            <h2>Square Footage</h2>
+            <h3>{property.square_footage}</h3>
+          </div>
+          <div className="general-info-items-prop-renter">
+            <h2>Acres</h2>
+            <h3>{property.acreage}</h3>
+          </div>
+          <div className="general-info-items-prop-renter">
+            <h2>Rent</h2>
+            <h3>{property.rent}</h3>
+          </div>
+          <div className="general-info-items-prop-renter">
             <h2>Gas Company</h2>
             <h3>{property.gas_company}</h3>
             <h2>Electric Company</h2>
             <h3>{property.electric_company}</h3>
+        </div>
           </div>
         </div>
       </div>

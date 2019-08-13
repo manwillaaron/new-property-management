@@ -74,7 +74,8 @@ class App extends Component {
           className="payRent">Pay With Card</button>
         </StripeCheckout>
         <input value={`$${this.state.amount}`}
-        onChange={e=>this.setState({amount:e.target.value})}/>
+        // onChange={e=>this.setState({amount:e.target.value})}
+        />
       </div>
     )
   }
