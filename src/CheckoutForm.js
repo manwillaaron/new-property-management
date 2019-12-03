@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import './App.css';
+import './CheckoutForm.css';
 import StripeCheckout from 'react-stripe-checkout'
 import axios from 'axios'
 import logo from './Logo-rentops-stripe.png'
 
 
-class App extends Component {
+class CheckoutForm extends Component {
   constructor() {
     super()
     this.state = {
@@ -81,7 +81,7 @@ class App extends Component {
   }
 }
 
-export default App;
+export default CheckoutForm;
 
 
 
