@@ -10,7 +10,6 @@
     "express": "^4.17.1",
     "express-pino-logger": "^4.0.0",
     "express-session": "^1.16.2",
-    "history": "^4.9.0",
     "massive": "^5.11.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
