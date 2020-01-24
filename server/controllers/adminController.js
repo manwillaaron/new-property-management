@@ -7,8 +7,7 @@ module.exports = {
     const db = req.app.get('db');
     const [existingAdmin] = await db.get_admin_by_username(username);
     if (!existingAdmin) return res.status(401).send('Invalid username');
-    let result = false;
-    if (password === existingAdmin.password) result = true;
+    let result = await bcrypt.compareSync(password, existingAdmin.password)
     if (result) {
       req.session.admin = {
         username: existingAdmin.username,

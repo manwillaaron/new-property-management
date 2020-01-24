@@ -66,10 +66,6 @@ class RenterDirectory extends Component {
               <div className="renter-elements-btns">
                 <button className="rent-but-style">
                   <Link
-                    onClick={console.log(
-                      'LIHLHGLJHGKHGFKJHGFJHGFJYTF',
-                      renter.admin_id
-                    )}
                     to={`/propertymanager/chat/${renter.admin_id}`}
                   >
                     chat with {renter.first_name}

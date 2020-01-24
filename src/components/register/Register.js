@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./Register.css";
 import { register, getAdmin } from "../../redux/adminReducer";
 import { connect } from "react-redux";
-import { Link, Redirect } from "react-router-dom";
+import { withRouter, Redirect } from "react-router-dom";
 
 class Register extends Component {
   constructor() {
@@ -37,7 +37,7 @@ class Register extends Component {
       phone_number,
       email
     } = this.state;
-
+    if(!username || !password ||  !first_name || !last_name || !phone_number || !email ) return alert('all input field are required')
     await this.props.register(
       username,
       password,
@@ -45,7 +45,7 @@ class Register extends Component {
       last_name,
       phone_number,
       email
-    );
+    ).then(_=> this.props.history.push('/renter'));
   }
 
   render() {
@@ -58,9 +58,9 @@ class Register extends Component {
       email
     } = this.state;
 
-    if (this.props.admin.admin.loggedIn) {
-      return <Redirect to="/renter"/>
-    }
+    // if (this.props.admin.admin.loggedIn) {
+    //   return <Redirect to="/renter"/>
+    // }
     return (
       <div className="register-page">
         <h1 className="title">RentOps</h1>
@@ -122,9 +122,7 @@ class Register extends Component {
               />
             </div>
             <div className="register-button">
-                <button onClick={() => this.registerAdmin()}>
-                  <Link to = '/renter'>Register</Link>
-                </button>
+                <button onClick={() => this.registerAdmin()}>Submit</button>
             </div>
           </div>
           <div />
@@ -138,7 +136,7 @@ function mapStateToProps(state) {
   return { admin: state.admin };
 }
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   { register, getAdmin }
-)(Register);
+)(Register));
