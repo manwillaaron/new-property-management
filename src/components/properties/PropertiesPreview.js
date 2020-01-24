@@ -29,7 +29,6 @@ class PropertiesPreview extends Component {
 
   render() {
     let { loggedIn, renterCheck } = this.props.admin.admin;
-    console.log(this.props);
     if (!loggedIn) return <Redirect to="/login" />;
     if (Boolean(renterCheck) === true) return <Redirect to="/renter" />;
     const { properties } = this.props;
@@ -39,7 +38,6 @@ class PropertiesPreview extends Component {
         {properties.map(property => {
           return (
             <div className="prop-container" key={property.prop_id}>
-              
               <PropertyPreview {...property} />
             </div>
           );

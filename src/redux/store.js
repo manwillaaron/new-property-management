@@ -28,9 +28,4 @@ export const store = createStore(
   composeWithDevTools(applyMiddleware(promiseMiddleware))
 );
 
-
-// export const store = createStore(composeWithDevTools(
-//   adminReducer, applyMiddleware(promiseMiddleware),
-// ));
-
 export const persistor = persistStore(store)

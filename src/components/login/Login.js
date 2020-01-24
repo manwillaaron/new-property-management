@@ -1,16 +1,16 @@
-import React, { Component } from "react";
-import "./Login.css";
-import { login, getAdmin } from "../../redux/adminReducer";
-import { Link, Redirect } from "react-router-dom";
-import { connect } from "react-redux";
+import React, { Component } from 'react';
+import './Login.css';
+import { login, getAdmin } from '../../redux/adminReducer';
+import { Link, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 import logo from './Logo-rentops.png';
 
 class Login extends Component {
   constructor() {
     super();
     this.state = {
-      username: "",
-      password: ""
+      username: '',
+      password: ''
     };
   }
   async componentDidMount() {
@@ -35,7 +35,7 @@ class Login extends Component {
     let { username, password } = this.state;
     return (
       <div className="login-page">
-        <img src={logo} className="title" alt='RentOps'/>
+        <img src={logo} className="title" alt="RentOps" />
         <div className="login-box">
           <h1 className="login-title">Login</h1>
           <div className="username-password-input-container">
@@ -56,10 +56,9 @@ class Login extends Component {
                 value={password}
                 onChange={this.handleChange}
                 name="password"
-                onKeyDown={(ev) => {
-                  console.log(`Pressed keyCode ${ev.key}`);
+                onKeyDown={ev => {
                   if (ev.key === 'Enter') {
-                    this.props.login(username, password)
+                    this.props.login(username, password);
                     ev.preventDefault();
                   }
                 }}
@@ -75,7 +74,7 @@ class Login extends Component {
             </button>
             <button className="button">
               <Link
-                style={{ color: "black", textDecoration: "none" }}
+                style={{ color: 'black', textDecoration: 'none' }}
                 to="/register"
               >
                 Register
@@ -95,7 +94,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(
-  mapStateToProps,
-  { login, getAdmin }
-)(Login);
+export default connect(mapStateToProps, { login, getAdmin })(Login);

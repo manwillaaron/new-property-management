@@ -9,14 +9,10 @@ module.exports = {
     io.in(room).emit("new message from sever", message);
   },
   
-  leaveRoom() {},
-  
   async getMessages(req, res) {
     const db = req.app.get("db");
     let { admin_id } = req.params;
-    console.log(+admin_id);
     let messages = await db.get_chatroom_messages(+admin_id);
-    console.log(messages);
     res.send(messages);
   },
 
@@ -24,9 +20,6 @@ module.exports = {
     const db = req.app.get("db");
     let { id, firstName } = req.session.admin;
     let { message_content, admin_id} = req.body;
-    console.log(message_content ,id, firstName);
-    console.log(req.body, req.session);
-
     let messages = await db.save_messages([
       message_content,
       +id,
@@ -39,7 +32,6 @@ module.exports = {
   async deleteMessage(req,res) {
     const db = req.app.get("db");
     let {message_id} = req.params
-    console.log(req.body, req.params);
     let messages = await db.delete_message(+message_id)
     res.send(messages) 
   },

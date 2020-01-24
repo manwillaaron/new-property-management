@@ -4,7 +4,6 @@ module.exports = {
     pay:(req,res)=>{
         const db = req.app.get('db')
         const {token:{id},amount} = req.body;
-        console.log(id,amount,stripe)
         stripe.charges.create(
             {
                 amount:amount,
@@ -18,7 +17,6 @@ module.exports = {
                     return res.status(500).send(err)
                 } else {
                     console.log('Successful payment',charge)
-                    //this is where you would do something with that purchase (i.e. store that information to your db)
                     return res.status(200).send(charge)
                 }
             }

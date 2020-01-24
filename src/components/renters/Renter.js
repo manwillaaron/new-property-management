@@ -1,37 +1,34 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import "./Renter.css";
-import { connect } from "react-redux";
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import './Renter.css';
+import { connect } from 'react-redux';
 import {
   addRenter,
   editRenter,
   deleteRenter,
   getRenters
-} from "../../redux/renterReducer";
-import { getAdmin } from "../../redux/adminReducer";
-import Header from "../header/Header";
+} from '../../redux/renterReducer';
+import { getAdmin } from '../../redux/adminReducer';
+import Header from '../header/Header';
 
 class Renter extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      first_name: "",
-      last_name: "",
-      phone_number: "",
-      email: "",
-      prop_id: ""
+      first_name: '',
+      last_name: '',
+      phone_number: '',
+      email: '',
+      prop_id: ''
     };
   }
   async componentDidMount() {
     await this.props.getAdmin();
-    console.log(this.props);
-
     this.setPropId();
   }
 
   setPropId = () => {
     this.setState({ prop_id: this.props.match.params.prop_id });
-    console.log(this.props.match.params.prop_id);
   };
 
   handleChange = e => {
@@ -96,7 +93,10 @@ function mapStateToProps(state) {
   return { admin: state.admin, properties: state.properties };
 }
 
-export default connect(
-  mapStateToProps,
-  { getRenters, addRenter, editRenter, deleteRenter, getAdmin }
-)(Renter);
+export default connect(mapStateToProps, {
+  getRenters,
+  addRenter,
+  editRenter,
+  deleteRenter,
+  getAdmin
+})(Renter);

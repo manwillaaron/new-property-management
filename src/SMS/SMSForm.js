@@ -43,7 +43,6 @@ class SMSForm extends Component {
     });
   };
   handleChange = event => {
-    // const name = event.target.getAttribute("name");
     this.setState({ toArr: event.target.value });
   };
 

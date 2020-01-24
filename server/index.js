@@ -12,22 +12,19 @@ const authCheck = require("./middleware/authCheck");
 const initSession = require("./middleware/initSession");
 const bodyParser = require("body-parser");
 const path = require("path");
+const app = express();
+const server = require("http").Server(app);
+const io = require("socket.io")(server);
 
 const client = require("twilio")(
   process.env.TWILIO_ACCOUT_SID,
   process.env.TWILIO_AUTH_TOKEN
 );
 
-const app = express();
-
 app.use(bodyParser.urlencoded({ extended: false }));
 
-const server = require("http").Server(app);
-const io = require("socket.io")(server);
 
 app.use(express.json());
-
-
 
 app.use(
   session({
@@ -109,9 +106,3 @@ app.post("/api/messages", (req, res) => {
 app.use( express.static( `${__dirname}/../build` ) );
 
 server.listen(4000, () => console.log("listening"));
-
-// app.get('/api/greeting', (req, res) => {
-  //   const name = req.query.name || 'World';
-  //   res.setHeader('Content-Type', 'application/json');
-// });
-//   res.send(JSON.stringify({ greeting: `Hello ${name}!` }));

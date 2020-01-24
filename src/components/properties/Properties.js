@@ -1,23 +1,22 @@
-import React, { Component } from "react";
-import "./Properties.css";
+import React, { Component } from 'react';
+import './Properties.css';
 import {
   editProperties,
   addProperty,
   getProperties
-} from "../../redux/propertiesReducer";
-import { getRenters, deleteRenter } from "../../redux/renterReducer";
-import { connect } from "react-redux";
-import { Link, Redirect } from "react-router-dom";
-import Header from "../header/Header";
-import { getAdmin } from "../../redux/adminReducer";
-import RenterDisplay from "../renters/RenterDisplay";
-import SMSForm from "../../SMS/SMSForm";
+} from '../../redux/propertiesReducer';
+import { getRenters, deleteRenter } from '../../redux/renterReducer';
+import { connect } from 'react-redux';
+import { Link, Redirect } from 'react-router-dom';
+import Header from '../header/Header';
+import { getAdmin } from '../../redux/adminReducer';
+import RenterDisplay from '../renters/RenterDisplay';
+import SMSForm from '../../SMS/SMSForm';
 
 class Properties extends Component {
   componentDidUpdate(pp) {
     if (pp !== this.props || this.props.renters.length === 0) {
       this.props.getRenters(this.props.match.params.prop_id);
-      
     }
   }
 
@@ -30,24 +29,9 @@ class Properties extends Component {
     if (!this.props.admin_id) return <Redirect to="/login" />;
     if (Boolean(this.props.admin.admin.renterCheck) === true)
       return <Redirect to="/renter" />;
-    console.log(this.props);
-    // let property = {};
-    // if (this.props.properties) {
-    //   property = this.props.properties.find(
-    //     property => property.prop_id === +this.props.match.params.prop_id
-    //   );
-    // } else {
-    //   property = this.props.property.find(
-    //     property => property.prop_id === +this.props.match.params.prop_id
-    //   );
-
-    let property =  this.props.property.find(
-          property => property.prop_id === +this.props.match.params.prop_id
-        );
-
-
-    
-
+    let property = this.props.property.find(
+      property => property.prop_id === +this.props.match.params.prop_id
+    );
     return (
       <div className="more-info-page" key={property.prop_id}>
         <div>
@@ -56,14 +40,14 @@ class Properties extends Component {
         <div className="all-prop-info">
           <div className="property-image-container">
             <Link
-            to={`/propertyinput/${this.props.match.params.prop_id}`}
-            className="property-image"
-            style={{
-              backgroundImage: "url(" + `${property.img_url}` + ")",
-              backgroundPosition: "center",
-              backgroundSize: "cover",
-              backgroundRepeat: "no-repeat"
-            }}
+              to={`/propertyinput/${this.props.match.params.prop_id}`}
+              className="property-image"
+              style={{
+                backgroundImage: 'url(' + `${property.img_url}` + ')',
+                backgroundPosition: 'center',
+                backgroundSize: 'cover',
+                backgroundRepeat: 'no-repeat'
+              }}
             />
           </div>
           <div className="prop-info-only">
@@ -129,11 +113,10 @@ class Properties extends Component {
             </div>
           </div>
         </div>
-            <div className= 'renters-smsform'>
-        <RenterDisplay prop_id={property.prop_id} />
-        <SMSForm  prop_id={property.prop_id} />
-            </div>
-
+        <div className="renters-smsform">
+          <RenterDisplay prop_id={property.prop_id} />
+          <SMSForm prop_id={property.prop_id} />
+        </div>
       </div>
     );
   }
@@ -148,14 +131,11 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(
-  mapStateToProps,
-  {
-    editProperties,
-    addProperty,
-    getProperties,
-    getRenters,
-    deleteRenter,
-    getAdmin
-  }
-)(Properties);
+export default connect(mapStateToProps, {
+  editProperties,
+  addProperty,
+  getProperties,
+  getRenters,
+  deleteRenter,
+  getAdmin
+})(Properties);

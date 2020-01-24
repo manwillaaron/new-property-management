@@ -10,7 +10,6 @@ import RenterDashboard from './components/renterDashboard/RenterDashboard'
 import RenterDirectory from "./components/renterDirectory/RenterDirectory";
 import RenterPropertyView from "./components/renterPropertyView/RenterPropertyView.js";
 import CheckoutForm from './CheckoutForm.js'
-import SocketView from "./components/socketView/SocketView.js";
 import ChatDisplay from "./components/chatDisplay/ChatDisplay.js";
 import PropertiesPreview from "./components/properties/PropertiesPreview.js";
 

@@ -26,10 +26,9 @@ class Register extends Component {
   handleChange = e => {
     const { value, name } = e.target;
     this.setState({ [name]: value });
-    console.log(value);
   };
 
-  async registerAdmin() {
+  registerAdmin= async () => {
     let {
       username,
       password,
@@ -115,7 +114,6 @@ class Register extends Component {
               <h1>email: </h1>
               <input value={email} onChange={this.handleChange} name="email" 
               onKeyDown={(ev) => {
-                console.log(`Pressed keyCode ${ev.key}`);
                 if (ev.key === 'Enter') {
                   this.registerAdmin()
                   ev.preventDefault();

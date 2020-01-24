@@ -10,11 +10,6 @@ import Header from "../header/Header";
 
 class AdminDashboard extends Component {
   async componentDidMount() {
-    console.log(this.props);
-    console.log(
-      "!%^R!^%R^!%$^%!$",
-      Boolean(this.props.admin.admin.renterCheck)
-    );
     if (Boolean(this.props.admin.admin.renterCheck) === true)
       return <Redirect to="/renter" />;
 
@@ -34,7 +29,6 @@ class AdminDashboard extends Component {
 
   render() {
     let { loggedIn, renterCheck } = this.props.admin.admin;
-    console.log(this.props);
     if (!loggedIn) return <Redirect to="/login" />;
     if (Boolean(renterCheck) === true) return <Redirect to="/renter" />;
 
@@ -84,8 +78,6 @@ class AdminDashboard extends Component {
               className="picture-buttons-admin"
               onClick={() => console.log("clicked")}
               style={{
-                // width: "200px",
-                // height:"150px",
                 backgroundImage: "url(" + add + ")",
                 backgroundPosition: "center",
                 backgroundSize: "cover",
@@ -100,8 +92,6 @@ class AdminDashboard extends Component {
               className="picture-buttons-admin"
               onClick={() => console.log("clicked")}
               style={{
-                // width: "200px",
-                // height:"150px",
                 backgroundImage:
                   "url(" +
                   `https://images.unsplash.com/photo-1530811761207-8d9d22f0a141?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60` +

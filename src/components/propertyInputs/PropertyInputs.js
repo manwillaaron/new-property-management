@@ -97,7 +97,6 @@ class PropertyInputs extends Component {
   };
 
   enter = ev => {
-    console.log(`Pressed keyCode ${ev.key}`);
     if (ev.key === "Enter") {
       this.props.addProperty(
         this.state.address,
@@ -126,7 +125,6 @@ class PropertyInputs extends Component {
   };
 
   render() {
-    console.log(this.props);
     let {
       address,
       num_beds,
@@ -256,7 +254,6 @@ class PropertyInputs extends Component {
         <h2>Taxes</h2>
         <input
           className="property-inputs"
-          // onKeyPress={()=> this.enter()}
           value={tax_yearly}
           onChange={this.handleChange}
           name="tax_yearly"
@@ -264,7 +261,6 @@ class PropertyInputs extends Component {
         <h2>Image 1</h2>
         <input
           className="property-inputs"
-          // onKeyPress={()=> this.enter()}
           value={img_url}
           onChange={this.handleChange}
           name="img_url"
@@ -276,7 +272,6 @@ class PropertyInputs extends Component {
         <h2>Image 4</h2>
         <input
           className="property-inputs"
-          // onKeyPress={()=> this.enter()}
           value={img_url4}
           onChange={this.handleChange}
           name="img_url4"
@@ -284,7 +279,6 @@ class PropertyInputs extends Component {
         <h2>Image 5</h2>
         <input
           className="property-inputs"
-          // onKeyPress={()=> this.enter()}
           value={img_url5}
           onChange={this.handleChange}
           name="img_url5"
@@ -317,30 +311,6 @@ class PropertyInputs extends Component {
                   this.state.img_url5,
                   this.state.property_name
                 );
-                console.log(
-                  this.props,
-                  "lllooonnnnggggcccllgg",
-                  this.state.address,
-                  this.state.num_beds,
-                  this.state.num_baths,
-                  this.state.square_footage,
-                  this.state.acreage,
-                  this.state.rent,
-                  this.state.gas_company,
-                  this.state.electric_company,
-                  this.state.has_renter,
-                  this.state.fridge_included,
-                  this.state.dishwasher_included,
-                  this.state.washer_dryer_included,
-                  this.state.mortgage,
-                  this.state.tax_yearly,
-                  this.state.img_url,
-                  this.state.img_url2,
-                  this.state.img_url3,
-                  this.state.img_url4,
-                  this.state.img_url5,
-                  this.state.property_name
-                );
               }}
             >
               <Link to={`/`}>Save Changes</Link>
@@ -350,28 +320,6 @@ class PropertyInputs extends Component {
           <button
             onClick={() => {
               this.props.addProperty(
-                this.state.address,
-                this.state.num_beds,
-                this.state.num_baths,
-                this.state.square_footage,
-                this.state.acreage,
-                this.state.rent,
-                this.state.gas_company,
-                this.state.electric_company,
-                this.state.has_renter,
-                this.state.fridge_included,
-                this.state.dishwasher_included,
-                this.state.washer_dryer_included,
-                this.state.mortgage,
-                this.state.tax_yearly,
-                this.state.img_url,
-                this.state.img_url2,
-                this.state.img_url3,
-                this.state.img_url4,
-                this.state.img_url5,
-                this.state.property_name
-              );
-              console.log(
                 this.state.address,
                 this.state.num_beds,
                 this.state.num_baths,

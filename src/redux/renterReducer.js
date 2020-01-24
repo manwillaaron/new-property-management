@@ -14,7 +14,6 @@ const initialState = {
 
 export function getRenters(propertyId) {
   let data = axios.get(`/api/renters/${propertyId}`).then(res => res.data);
-
   return {
     type: GET_RENTERS,
     payload: data
