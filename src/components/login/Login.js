@@ -4,13 +4,16 @@ import { login, getAdmin } from '../../redux/adminReducer';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import logo from './Logo-rentops.png';
+import axios from 'axios';
+import SweetAlert from 'sweetalert2-react';
 
 class Login extends Component {
   constructor() {
     super();
     this.state = {
       username: '',
-      password: ''
+      password: '',
+      show: false
     };
   }
   async componentDidMount() {
@@ -27,6 +30,14 @@ class Login extends Component {
       this.render();
     }
   }
+
+  login = () => {
+    const { username, password } = this.state;
+    axios
+      .post('/api/login', { username, password })
+      .then(res => this.props.history.push('/renter'))
+      .catch(err => this.setState({show:true}));
+  };
 
   render() {
     if (this.props.admin.admin.loggedIn) {
@@ -68,10 +79,16 @@ class Login extends Component {
           <div className="button-container">
             <button
               className="button"
-              onClick={() => this.props.login(username, password)}
+              onClick={() => this.login(username, password)}
             >
               Login
             </button>
+            <SweetAlert
+              show={this.state.show}
+              title="login incorrect"
+              text="check username and password"
+              onConfirm={() => this.setState({ show: false })}
+            />
             <button className="button">
               <Link
                 style={{ color: 'black', textDecoration: 'none' }}

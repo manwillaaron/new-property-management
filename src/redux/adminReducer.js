@@ -1,4 +1,5 @@
 import axios from "axios";
+
 import {
   REGISTER,
   LOGIN,
@@ -43,7 +44,7 @@ export const register = (
 export const login = (username, password) => {
   let data = axios
     .post("/api/login", { username, password })
-    .then(res => res.data);
+    .then(res => res.data)
   return {
     type: LOGIN,
     payload: data
@@ -57,7 +58,6 @@ export const getAdmin = () => {
     payload: data
   };
 };
-
 export const signout = () => {
   let data = axios.delete("/api/signout").then(res => res.data);
   return {

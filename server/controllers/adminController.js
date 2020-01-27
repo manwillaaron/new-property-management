@@ -32,9 +32,11 @@ module.exports = {
     const db = req.app.get('db');
     let [existingAdmin] = await db.get_admin_by_username(username);
     if (existingAdmin) return res.status(401).send('Username already exists');
+    const  salt = bcrypt.genSaltSync(saltRounds)
+    const hash  = bcrypt.hashSync(password, salt)
     let [admin] = await db.create_admin([
       username,
-      password,
+      hash,
       first_name,
       last_name,
       phone_number,

@@ -1,41 +1,33 @@
-import React, { Component } from "react";
-import "./AdminDashboard.css";
-import { Redirect } from "react-router-dom";
-import { connect } from "react-redux";
-import { getAdmin } from "../../redux/adminReducer";
-import { getProperties } from "../../redux/propertiesReducer";
-import Admin from './Admin'
+import React, {useEffect } from 'react';
+import './AdminDashboard.css';
+import { Redirect, withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { getAdmin } from '../../redux/adminReducer';
+import { getProperties } from '../../redux/propertiesReducer';
+import Admin from './Admin';
 
-class AdminDashboard extends Component {
-  async componentDidMount() {
-    if (!this.props.admin.admin.loggedIn) {
-      this.props.getAdmin();
-
-      if (!this.props.properties) this.props.getProperties();
-    }
+ function AdminDashboard(props) {
+  useEffect(()=>{
+      if (!props.admin.admin.loggedIn) {
+  props.getAdmin();
+     if (!props.properties)  props.getProperties();
   }
-
-  componentDidUpdate(prevProps) {
-    if (prevProps.adminId !== this.props.adminId) {
-      this.props.getProperties(this.props.adminId);
-    }
-    return;
-  }
-
-  render() {
-    let { loggedIn, renterCheck } = this.props.admin.admin;
-    console.log(this.props);
+  }, [])
+  
+  useEffect(()=>{
+  props.getProperties(props.adminId);
+  }, [props])
+    let { loggedIn, renterCheck } = props.admin.admin;
     if (!loggedIn) return <Redirect to="/login" />;
-    if (JSON.parse(this.props.admin.admin.renterCheck) === true)
+    if (JSON.parse(props.admin.admin.renterCheck) === true)
       return <Redirect to="/renter" />;
 
     return (
       <div className="admindash-containter">
-      <Admin/>
+        <Admin />
       </div>
     );
   }
-}
 
 function mapStateToProps(state) {
   return {
@@ -44,7 +36,7 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(
-  mapStateToProps,
-  { getAdmin, getProperties }
-)(AdminDashboard);
+export default 
+ withRouter(connect(mapStateToProps, { getAdmin, getProperties })(
+  AdminDashboard
+))

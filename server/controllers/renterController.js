@@ -18,7 +18,7 @@ module.exports = {
 
   async addRenter(req, res) {
     const db = req.app.get('db');
-    let { first_name, last_name, phone_number, email, propertyId } = req.body;
+    let { first_name, last_name, phone_number, email, prop_id } = req.body;
     let [existingAdmin] = await db.get_admin_by_username(email);
     if (existingAdmin) return res.status(401).send('Username already exists');
     let salt = await bcrypt.genSalt(saltRounds);
@@ -29,7 +29,7 @@ module.exports = {
       last_name,
       phone_number,
       email,
-      +propertyId
+      +prop_id
     ]);
     res.send(admin);
   },

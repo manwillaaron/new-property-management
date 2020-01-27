@@ -32,6 +32,7 @@ class Properties extends Component {
     let property = this.props.property.find(
       property => property.prop_id === +this.props.match.params.prop_id
     );
+    
     return (
       <div className="more-info-page" key={property.prop_id}>
         <div>

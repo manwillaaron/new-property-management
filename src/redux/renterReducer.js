@@ -29,21 +29,9 @@ export function getAllRenters(adminId) {
   };
 }
 
-export function addRenter(
-  first_name,
-  last_name,
-  phone_number,
-  email,
-  propertyId
-) {
+export function addRenter(newRenter) {
   let data = axios
-    .post(`/api/renter/add`, {
-      first_name,
-      last_name,
-      phone_number,
-      email,
-      propertyId
-    })
+    .post(`/api/renter/add`, newRenter)
     .then(res => res.data);
   return {
     type: ADD_RENTER,

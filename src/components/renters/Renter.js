@@ -10,6 +10,7 @@ import {
 } from '../../redux/renterReducer';
 import { getAdmin } from '../../redux/adminReducer';
 import Header from '../header/Header';
+import Input from '../input/Input';
 
 class Renter extends Component {
   constructor(props) {
@@ -19,17 +20,13 @@ class Renter extends Component {
       last_name: '',
       phone_number: '',
       email: '',
-      prop_id: ''
+      prop_id: props.match.params.prop_id
     };
   }
-  async componentDidMount() {
-    await this.props.getAdmin();
-    this.setPropId();
-  }
 
-  setPropId = () => {
-    this.setState({ prop_id: this.props.match.params.prop_id });
-  };
+  // componentDidMount() {
+  //   this.props.getAdmin();
+  // }
 
   handleChange = e => {
     let { value, name } = e.target;
@@ -37,51 +34,23 @@ class Renter extends Component {
   };
 
   render() {
-    const { first_name, last_name, phone_number, email } = this.state;
+    const { first_name, last_name, phone_number, email, prop_id } = this.state;
+    let inputArr = [
+      { text: 'first_name', val: first_name },
+      { text: 'last_name', val: last_name },
+      { text: 'phone_number', val: phone_number },
+      { text: 'email', val: email }
+    ].map((input, i) => (
+      <Input key={i} input={input} handleChange={this.handleChange} />
+    ));
+
     return (
       <div>
         <Header />
         <div>
-          <h3>First Name</h3>
-          <input
-            className="renter-inputs"
-            onChange={this.handleChange}
-            name="first_name"
-            value={first_name}
-          />
-          <h3>Last Name</h3>
-          <input
-            className="renter-inputs"
-            onChange={this.handleChange}
-            name="last_name"
-            value={last_name}
-          />
-          <h3>Phone Number</h3>
-          <input
-            className="renter-inputs"
-            onChange={this.handleChange}
-            name="phone_number"
-            value={phone_number}
-          />
-          <h3>Email</h3>
-          <input
-            className="renter-inputs"
-            onChange={this.handleChange}
-            name="email"
-            value={email}
-          />
-          <button
-            onClick={() =>
-              this.props.addRenter(
-                first_name,
-                last_name,
-                phone_number,
-                email,
-                this.state.prop_id
-              )
-            }
-          >
-            <Link to={`/moreinfo/${this.state.prop_id}`}>Add</Link>
+          {inputArr}
+          <button onClick={() => this.props.addRenter(this.state)}>
+            <Link to={`/moreinfo/${prop_id}`}>Add</Link>
           </button>
         </div>
       </div>

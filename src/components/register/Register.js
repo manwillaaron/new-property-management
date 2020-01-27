@@ -1,21 +1,28 @@
-import React, { Component } from "react";
-import "./Register.css";
-import { register, getAdmin } from "../../redux/adminReducer";
-import { connect } from "react-redux";
-import { withRouter, Redirect } from "react-router-dom";
+import React, { Component } from 'react';
+import './Register.css';
+import { register, getAdmin } from '../../redux/adminReducer';
+import { connect } from 'react-redux';
+import { withRouter, Link } from 'react-router-dom';
+import SweetAlert from 'sweetalert2-react';
+import  Input  from '../input/Input'
 
 class Register extends Component {
   constructor() {
     super();
     this.state = {
-      username: "",
-      password: ""
+      show: false,
+      username: '',
+      password: '',
+      first_name: '',
+      last_name: '',
+      phone_number: '',
+      email: ''
     };
   }
 
-  componentDidUpdate(prevProps){
-    if(prevProps !== this.props) {
-      this.render()
+  componentDidUpdate(prevProps) {
+    if (prevProps !== this.props) {
+      this.render();
     }
   }
 
@@ -28,7 +35,7 @@ class Register extends Component {
     this.setState({ [name]: value });
   };
 
-  registerAdmin= async () => {
+  registerAdmin = async () => {
     let {
       username,
       password,
@@ -37,16 +44,20 @@ class Register extends Component {
       phone_number,
       email
     } = this.state;
-    if(!username || !password ||  !first_name || !last_name || !phone_number || !email ) return alert('all input field are required')
-    await this.props.register(
-      username,
-      password,
-      first_name,
-      last_name,
-      phone_number,
-      email
-    ).then(_=> this.props.history.push('/renter'));
-  }
+    if (
+      !username ||
+      !password ||
+      !first_name ||
+      !last_name ||
+      !phone_number ||
+      !email
+    ) {
+      return this.setState({ show: true });
+    }
+    await this.props
+      .register(username, password, first_name, last_name, phone_number, email)
+      .then(_ => this.props.history.push('/renter'));
+  };
 
   render() {
     const {
@@ -58,74 +69,31 @@ class Register extends Component {
       email
     } = this.state;
 
-    // if (this.props.admin.admin.loggedIn) {
-    //   return <Redirect to="/renter"/>
-    // }
+    const inputArr = [
+      { text: 'username', val: username },
+      { text: 'password', val: password },
+      { text: 'first_name', val: first_name },
+      { text: 'last_name', val: last_name },
+      { text: 'phone_number', val: phone_number },
+      { text: 'email', val: email }
+    ].map((input, i) => <Input key={i} input={input} handleChange={this.handleChange} />);
+
     return (
       <div className="register-page">
         <h1 className="title">RentOps</h1>
-        <div className="all-info">
-          <h1 className="register-title">Register</h1>
-          <div className="username-password-container">
-            <div className="username-password-boxes">
-              <h1>Username: </h1>
-              <input
-                value={username}
-                onChange={this.handleChange}
-                name="username"
-              />
-            </div>
-            <div className="username-password-boxes">
-              <h1>Password: </h1>
-              <input
-                type="password"
-                value={password}
-                onChange={this.handleChange}
-                name="password"
-              />
-            </div>
-          </div>
-          <div className="more-info-container">
-            <div className="moreinfo-boxes">
-              <h1>First name: </h1>
-              <input
-                value={first_name}
-                onChange={this.handleChange}
-                name="first_name"
-              />
-            </div>
-            <div className="moreinfo-boxes">
-              <h1>Last name: </h1>
-              <input
-                value={last_name}
-                onChange={this.handleChange}
-                name="last_name"
-              />
-            </div>
-            <div className="moreinfo-boxes">
-              <h1>phone_number: </h1>
-              <input
-                value={phone_number}
-                onChange={this.handleChange}
-                name="phone_number"
-              />
-            </div>
-            <div className="moreinfo-boxes">
-              <h1>email: </h1>
-              <input value={email} onChange={this.handleChange} name="email" 
-              onKeyDown={(ev) => {
-                if (ev.key === 'Enter') {
-                  this.registerAdmin()
-                  ev.preventDefault();
-                }
-              }}
-              />
-            </div>
-            <div className="register-button">
-                <button onClick={() => this.registerAdmin()}>Submit</button>
-            </div>
-          </div>
-          <div />
+        <div className="username-password-container">{inputArr}</div>
+        <div className="register-button">
+          <button onClick={() => this.registerAdmin()}>Submit</button>
+        </div>
+        <SweetAlert
+        show={this.state.show}
+        title="invalid entries"
+        text="all fields are required"
+        onConfirm={() => this.setState({ show: false })}
+      />
+        <div style={{'display':'flex'}}>
+          <p>Already have an account?</p>
+          <Link to="/login">click here to login</Link>
         </div>
       </div>
     );
@@ -136,7 +104,6 @@ function mapStateToProps(state) {
   return { admin: state.admin };
 }
 
-export default withRouter(connect(
-  mapStateToProps,
-  { register, getAdmin }
-)(Register));
+export default withRouter(
+  connect(mapStateToProps, { register, getAdmin })(Register)
+);

@@ -1,17 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
+import  {withRouter} from 'react-router-dom'
 import './ChatDisplay.css';
 import Chat from '../chat/Chat';
 import Header from '../header/Header';
 
-class ChatDisplay extends Component {
-  render() {
-    return (
-      <div className="chat-display">
-        <Header />
-        <Chat admin_id={this.props.match.params} />
-      </div>
-    );
-  }
-}
+const ChatDisplay = (props) => (
+  <div className="chat-display">
+    <Header />
+    <Chat admin_id={props.match.params} />
+  </div>
+);
 
-export default ChatDisplay;
+export default withRouter(ChatDisplay);

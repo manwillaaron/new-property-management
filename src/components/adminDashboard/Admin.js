@@ -1,34 +1,25 @@
-import React, { Component } from "react";
-import "./Admin.css";
-import { Redirect, Link } from "react-router-dom";
-import { connect } from "react-redux";
-import { getAdmin } from "../../redux/adminReducer";
-import { getProperties } from "../../redux/propertiesReducer";
-import add from "./addHosuse2-01.png";
-import Header from "../header/Header";
+import React, { useEffect } from 'react';
+import './Admin.css';
+import { Redirect, Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { getAdmin } from '../../redux/adminReducer';
+import { getProperties } from '../../redux/propertiesReducer';
+import add from './addHosuse2-01.png';
+import Header from '../header/Header';
 
-
-class AdminDashboard extends Component {
-  async componentDidMount() {
-    if (Boolean(this.props.admin.admin.renterCheck) === true)
-      return <Redirect to="/renter" />;
-
-    if (!this.props.admin.admin.loggedIn) {
-      this.props.getAdmin();
-
-      if (!this.props.properties) this.props.getProperties();
-    }
+  function AdminDashboard(props) {
+  useEffect(()=>{
+  if (Boolean(props.admin.admin.renterCheck) === true)
+  return <Redirect to="/renter" />;
+  
+     if (!props.admin.admin.loggedIn) {
+   props.getAdmin();
+  
+  if (!props.properties) props.getProperties();
   }
+  })
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.adminId !== this.props.adminId) {
-      this.props.getProperties(this.props.adminId);
-    }
-    return;
-  }
-
-  render() {
-    let { loggedIn, renterCheck } = this.props.admin.admin;
+    let { loggedIn, renterCheck } = props.admin.admin;
     if (!loggedIn) return <Redirect to="/login" />;
     if (Boolean(renterCheck) === true) return <Redirect to="/renter" />;
 
@@ -39,71 +30,71 @@ class AdminDashboard extends Component {
           <div className="rows-admin">
             <Link
               className="picture-buttons-admin"
-              to={"/propertiespreview"}
-              onClick={() => console.log("clicked")}
+              to={'/propertiespreview'}
+              onClick={() => console.log('clicked')}
               style={{
                 backgroundImage:
-                  "url(" +
-                  "https://images.unsplash.com/photo-1513880989635-6eb491ce7f5b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60" +
-                  ")",
-                backgroundPosition: "center",
-                backgroundSize: "cover",
-                backgroundRepeat: "no-repeat"
+                  'url(' +
+                  'https://images.unsplash.com/photo-1513880989635-6eb491ce7f5b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60' +
+                  ')',
+                backgroundPosition: 'center',
+                backgroundSize: 'cover',
+                backgroundRepeat: 'no-repeat'
               }}
             >
               <h1 className="centered-admin">Your Rentals</h1>
             </Link>
 
             <Link
-              to={"/directory/renters"}
+              to={'/directory/renters'}
               className="picture-buttons-admin"
-              onClick={() => console.log("clicked")}
+              onClick={() => console.log('clicked')}
               style={{
                 backgroundImage:
-                  "url(" +
+                  'url(' +
                   `https://images.unsplash.com/photo-1510936470381-68e4c0a5e24b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60` +
-                  ")",
-                backgroundPosition: "center",
-                backgroundSize: "cover",
-                backgroundRepeat: "no-repeat"
+                  ')',
+                backgroundPosition: 'center',
+                backgroundSize: 'cover',
+                backgroundRepeat: 'no-repeat'
               }}
             >
-              {" "}
+              {' '}
               <h1 class="centered1-admin">Renter Directory</h1>
             </Link>
           </div>
           <div className="rows-admin">
             <Link
-              to={"/add/propertyinput"}
+              to={'/add/propertyinput'}
               className="picture-buttons-admin"
-              onClick={() => console.log("clicked")}
+              onClick={() => console.log('clicked')}
               style={{
-                backgroundImage: "url(" + add + ")",
-                backgroundPosition: "center",
-                backgroundSize: "cover",
-                backgroundRepeat: "no-repeat"
+                backgroundImage: 'url(' + add + ')',
+                backgroundPosition: 'center',
+                backgroundSize: 'cover',
+                backgroundRepeat: 'no-repeat'
               }}
             >
-              {" "}
+              {' '}
               <h1 class="centered-admin">Add House</h1>
             </Link>
             <Link
               to={`/propertymanager/chat/`}
               className="picture-buttons-admin"
-              onClick={() => console.log("clicked")}
+              onClick={() => console.log('clicked')}
               style={{
                 backgroundImage:
-                  "url(" +
+                  'url(' +
                   `https://images.unsplash.com/photo-1530811761207-8d9d22f0a141?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60` +
-                  ")",
-                backgroundPosition: "center",
-                backgroundSize: "cover",
-                backgroundRepeat: "no-repeat"
+                  ')',
+                backgroundPosition: 'center',
+                backgroundSize: 'cover',
+                backgroundRepeat: 'no-repeat'
               }}
             >
               <div class="centered2-admin">
                 <h1>Messages</h1>
-                <div className='msg-counter'>2</div>
+                <div className="msg-counter">2</div>
               </div>
             </Link>
           </div>
@@ -111,7 +102,6 @@ class AdminDashboard extends Component {
       </div>
     );
   }
-}
 
 function mapStateToProps(state) {
   return {
@@ -120,7 +110,6 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(
-  mapStateToProps,
-  { getAdmin, getProperties }
-)(AdminDashboard);
+export default connect(mapStateToProps, { getAdmin, getProperties })(
+  AdminDashboard
+);
