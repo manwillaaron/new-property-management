@@ -59,6 +59,7 @@ module.exports = {
     res.sendStatus(200);
   },
   async getAdmin(req, res) {
+    console.log(req.session)
     if(req.session && req.session.admin ){
       res.status(200).send(req.session.admin);
     }else {

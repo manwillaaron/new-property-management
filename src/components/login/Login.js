@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import './Login.css';
 import { login, getAdmin } from '../../redux/adminReducer';
 import { Link, Redirect, withRouter } from 'react-router-dom';
@@ -7,96 +7,79 @@ import logo from './Logo-rentops.png';
 import axios from 'axios';
 import SweetAlert from 'sweetalert2-react';
 
-class Login extends Component {
-  constructor() {
-    super();
-    this.state = {
-      username: '',
-      password: '',
-      show: false
-    };
-  }
-  componentDidMount() {
-  //  this.props.toggle()
-  }
+function Login(props) {
+  const [show, toggleShow] = useState(false);
+  const [inputs, handle] = useState({ username: '', password: '' });
 
-  handleChange = e => {
+  const handleChange = e => {
+  
     const { value, name } = e.target;
-    this.setState({ [name]: value });
+    handle({ ...inputs, [name]: value });
   };
 
-  login = () => {
-    const { username, password } = this.state;
+  const login = () => {
     axios
       .post('/api/login', { username, password })
-      .then(res => this.props.history.push('/'))
-      .catch(err => this.setState({show:true}));
+      .then(res => props.history.push('/loading'))
+      .catch(err => toggleShow(true));
   };
-
-  render() {
-    // if (this.props.admin.admin.loggedIn) {
-    //   return <Redirect to="/" />;
-    // }
-    let { username, password } = this.state;
-    return (
-      <div className="login-page">
-        <img src={logo} className="title" alt="RentOps" />
-        <div className="login-box">
-          <h1 className="login-title">Login</h1>
-          <div className="username-password-input-container">
-            <div className="username">
-              <h1>Username:</h1>
-              <input
-                className="input1"
-                value={username}
-                onChange={this.handleChange}
-                name="username"
-              />
-            </div>
-            <div className="password">
-              <h1>Password: </h1>
-              <input
-                type="password"
-                className="input2"
-                value={password}
-                onChange={this.handleChange}
-                name="password"
-                onKeyDown={ev => {
-                  if (ev.key === 'Enter') {
-                    this.props.login(username, password);
-                    ev.preventDefault();
-                  }
-                }}
-              />
-            </div>
-          </div>
-          <div className="button-container">
-            <button
-              className="button"
-              onClick={() => this.login(username, password)}
-            >
-              Login
-            </button>
-            <SweetAlert
-              show={this.state.show}
-              title="login incorrect"
-              text="check username and password"
-              onConfirm={() => this.setState({ show: false })}
+  
+  let { username, password } = inputs;
+  return (
+    <div className="login-page">
+      <img src={logo} className="title" alt="RentOps" />
+      <div className="login-box">
+        <h1 className="login-title">Login</h1>
+        <div className="username-password-input-container">
+          <div className="username">
+            <h1>Username:</h1>
+            <input
+              className="input1"
+              value={username}
+              onChange={handleChange}
+              name="username"
             />
-            <button className="button">
-              <Link
-                style={{ color: 'black', textDecoration: 'none' }}
-                to="/register"
-              >
-                Register
-              </Link>
-            </button>
+          </div>
+          <div className="password">
+            <h1>Password: </h1>
+            <input
+              type="password"
+              className="input2"
+              value={password}
+              onChange={handleChange}
+              name="password"
+              onKeyDown={ev => {
+                if (ev.key === 'Enter') {
+                  props.login(username, password);
+                  ev.preventDefault();
+                }
+              }}
+            />
           </div>
         </div>
-        <div />
+        <div className="button-container">
+          <button className="button" onClick={() => login(username, password)}>
+            Login
+          </button>
+          <SweetAlert
+            show={show}
+            title="login incorrect"
+            text="check username and password"
+            onConfirm={() => toggleShow(false)}
+          />
+          <button className="button">
+            <Link
+              style={{ color: 'black', textDecoration: 'none' }}
+              to="/register"
+            >
+              Register
+            </Link>
+          </button>
+        </div>
       </div>
-    );
-  }
+      <div />
+    </div>
+  );
 }
 
 function mapStateToProps(state) {

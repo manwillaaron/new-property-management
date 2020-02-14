@@ -7,4 +7,112 @@
 
 }
 
+.admin-dash-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+  }
+  
+  .picture-button-container-admin {
+    width: 90%;
+    display: flex;
+    /* justify-content: space-between; */
+    flex-wrap: wrap;
+  }
+  .rows-admin {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 0.5%;
+  
+  }
+  
+  .centered-admin {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: solid 1px transparent;
+    border-radius: 5px;
+    padding: 30px;
+  }
+  
+  .centered-admin:hover {
+      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  
+    }
+  
+  .centered1-admin {
+    position: absolute;
+    top: 50%;
+    left: 51%;
+    transform: translate(-50%, -50%);
+    border: solid 1px transparent;
+    border-radius: 5px;
+    padding: 30px;
+   
+  }
+  
+  .centered1-admin:hover {
+      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  
+    }
+  .centered2-admin {
+    position: absolute;
+    top: 45%;
+    left: 49%;
+    transform: translate(-50%, -50%);
+    border: solid 1px transparent;
+    border-radius: 5px;
+    padding: 30px;
+    display: flex;
+    flex-direction: row;
+  
+  }
+  
+  .centered2-admin:hover {
+      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  
+  
+    }
+  
+    .msg-counter{
+      border: solid 1px  rgb(147, 164, 147);
+      border-radius: 5px;
+      padding: 3px;
+     margin-left:3px;
+     font-size: 13px !important;
+     align-self: center;
+     justify-self: center;
+    }
+  
+  .picture-buttons-admin {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    display: flex;
+    width: 49%;
+    height: 400px;
+    position: relative;
+    text-align: center;
+    color: white;
+    font-size: 26px;
+    font-style: italic;
+  }
+  
+  .picture-buttons-admin:hover {
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  }
+  
+  @media only screen and (max-width: 750px) {
+    .picture-button-container-admin {
+      width: 90%;
+      display: flex;
+      /* justify-content: space-between; */
+      flex-wrap: wrap;
+  }
+  }
+  
+
 
