@@ -36,16 +36,16 @@ class Chat extends Component {
       });
     });
   }
-  componentDidUpdate(prevProps) {
-    if (prevProps.messages.length > 0 && this.props.messages.length === 0) {
-      if (!Boolean(this.props.admin.admin.rentChecker)) {
-        this.props.getChatroomMessages(this.props.admin_id.admin_id);
-      } else {
-        this.props.getChatroomMessages(this.props.admin.admin.id);
-      }
-    }
-    return;
-  }
+  // componentDidUpdate(prevProps) {
+  //   if (prevProps.messages.length > 0 && this.props.messages.length === 0) {
+  //     if (!Boolean(this.props.admin.admin.rentChecker)) {
+  //       this.props.getChatroomMessages(this.props.admin_id.admin_id);
+  //     } else {
+  //       this.props.getChatroomMessages(this.props.admin.admin.id);
+  //     }
+  //   }
+  //   return;
+  // }
 
   deleteMessage = async message => {
     await this.props.deleteMessage(message);
@@ -53,19 +53,19 @@ class Chat extends Component {
     this.setState({ chatMessages: this.props.messages });
   };
 
-  async componentDidMount() {
-    if (!Boolean(this.props.admin.admin.rentChecker)) {
-      await this.props.getChatroomMessages(this.props.admin_id.admin_id);
-    } else {
-      await this.props.getChatroomMessages(this.props.admin.admin.id);
-    }
-    this.setState({
-      ...this.state.chatMessages,
-      chatMessages: this.props.messages
-    });
-    this.props.getChatroomMessages(this.props.admin_id.admin_id);
-    this.joinRoom();
-  }
+  // async componentDidMount() {
+  //   if (!Boolean(this.props.admin.admin.rentChecker)) {
+  //     await this.props.getChatroomMessages(this.props.admin_id.admin_id);
+  //   } else {
+  //     await this.props.getChatroomMessages(this.props.admin.admin.id);
+  //   }
+  //   this.setState({
+  //     ...this.state.chatMessages,
+  //     chatMessages: this.props.messages
+  //   });
+  //   this.props.getChatroomMessages(this.props.admin_id.admin_id);
+  //   this.joinRoom();
+  // }
 
   joinRoom = () => {
     socket.emit('needy', 1234);

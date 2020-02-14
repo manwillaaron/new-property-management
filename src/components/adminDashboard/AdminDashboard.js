@@ -1,42 +1,31 @@
-import React, {useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './AdminDashboard.css';
-import { Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getAdmin } from '../../redux/adminReducer';
-import { getProperties } from '../../redux/propertiesReducer';
-import Admin from './Admin';
+import Admin from '../admin/Admin';
+import { withRouter } from 'react-router-dom';
 
- function AdminDashboard(props) {
-  useEffect(()=>{
-      if (!props.admin.admin.loggedIn) {
-  props.getAdmin();
-     if (!props.properties)  props.getProperties();
+const AdminDashboard = (props) => {
+  const [toggled, toggle] = useState(false);
+  useEffect(() => {
+    loginCheck();
+    if(props.rcheck){
+     props.history.push('/renter')
+    }
+  }, []);
+
+  async function loginCheck() {
+    try {
+      await props.getAdmin();
+    } catch {
+      props.history.push('/login');
+    } finally {
+      if (toggled === false) {
+        toggle(true);
+      }
+    }
   }
-  }, [])
-  
-  useEffect(()=>{
-  props.getProperties(props.adminId);
-  }, [props])
-    let { loggedIn, renterCheck } = props.admin.admin;
-    if (!loggedIn) return <Redirect to="/login" />;
-    if (JSON.parse(props.admin.admin.renterCheck) === true)
-      return <Redirect to="/renter" />;
-
-    return (
-      <div className="admindash-containter">
-        <Admin />
-      </div>
-    );
-  }
-
-function mapStateToProps(state) {
-  return {
-    admin: state.admin,
-    properties: state.properties
-  };
+  return <div className="admindash-containter">{toggled && <Admin toggle={toggle} />}</div>;
 }
 
-export default 
- withRouter(connect(mapStateToProps, { getAdmin, getProperties })(
-  AdminDashboard
-))
+export default withRouter(connect(null, { getAdmin })(AdminDashboard));

@@ -29,10 +29,6 @@ class RenterDashboard extends Component {
 
   render() {
     let propObj = this.getSingleObj();
-    let { loggedIn } = this.props.admin.admin;
-    if (!loggedIn) return <Redirect to="/login" />;
-    if (JSON.parse(this.props.admin.admin.renterCheck) === false)
-      return <Redirect to="/" />;
     return (
       <div className="renter-dash-container">
         <Header />
@@ -90,7 +86,7 @@ class RenterDashboard extends Component {
               <h1 class="centered">Repairs</h1>
             </Link>
             <Link
-              to={`/propertymanager/chat/${propObj.admin_id}`}
+              to={`/manager/chat/${propObj.admin_id}`}
               className="picture-buttons1"
               onClick={() => console.log('clicked', propObj)}
               style={{

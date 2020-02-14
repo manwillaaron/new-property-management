@@ -50,7 +50,7 @@ class PropertyInputs extends Component {
     if (this.props.match.path === '/add/renter/propertyinputs/:prop_id') {
       this.setState({ editing: false });
     }
-    
+
     this.props.properties.find(property => {
       if (+this.props.match.params.prop_id === property.prop_id) {
         return this.setState(property);
@@ -102,27 +102,35 @@ class PropertyInputs extends Component {
       this.state.property_name
     ];
     let inputs = [
-      { val: this.state.address, text: 'address' },
-      { val: this.state.num_beds, text: 'num_beds' },
-      { val: this.state.num_baths, text: 'num_baths' },
-      { val: this.state.square_footage, text: 'square_footage' },
-      { val: this.state.acreage, text: 'acreage' },
-      { val: this.state.rent, text: 'rent' },
-      { val: this.state.gas_company, text: 'gas_company' },
-      { val: this.state.electric_company, text: 'electric_company' },
-      { val: this.state.has_renter, text: 'has_renter' },
-      { val: this.state.fridge_included, text: 'fridge_included' },
-      { val: this.state.dishwasher_included, text: 'dishwasher_included' },
-      { val: this.state.washer_dryer_included, text: 'washer_dryer_included' },
-      { val: this.state.mortgage, text: 'mortgage' },
-      { val: this.state.tax_yearly, text: 'tax_yearly' },
-      { val: this.state.img_url, text: 'img_url' },
-      { val: this.state.img_url2, text: 'img_url2' },
-      { val: this.state.img_url3, text: 'img_url3' },
-      { val: this.state.img_url4, text: 'img_url4' },
-      { val: this.state.img_url5, text: 'img_url5' },
-      { val: this.state.property_name, text: 'property_name' }
-    ].map((input, i) => <Input key={i} input={input} handleChange={this.handleChange} />);
+      'address',
+      'num_beds',
+      'num_baths',
+      'square_footage',
+      'acreage',
+      'rent',
+      'gas_company',
+      'electric_company',
+      'has_renter',
+      'fridge_included',
+      'dishwasher_included',
+      'washer_dryer_included',
+      'mortgage',
+      'tax_yearly',
+      'img_url',
+      'img_url2',
+      'img_url3',
+      'img_url4',
+      'img_url5',
+      'property_name'
+    ].map((input, i) => (
+      <Input
+        key={i}
+        input={input}
+        val={this.state[input]}
+        text={input}
+        handleChange={this.handleChange}
+      />
+    ));
     return (
       <div>
         <Header prop_id={this.props.match.params} />

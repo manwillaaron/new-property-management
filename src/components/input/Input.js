@@ -3,11 +3,11 @@ import React from 'react'
 const Input = props => (
     <div>
     <input
-      placeholder={props.input.text.split('_').join(' ')}
+      placeholder={props.text.split('_').join(' ')}
       className="property-inputs"
-      value={props.input.val}
+      value={props.val}
       onChange={e => props.handleChange(e)}
-      name={props.input.text}
+      name={props.text}
     />
   </div>
 )

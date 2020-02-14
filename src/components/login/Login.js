@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Login.css';
 import { login, getAdmin } from '../../redux/adminReducer';
-import { Link, Redirect } from 'react-router-dom';
+import { Link, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import logo from './Logo-rentops.png';
 import axios from 'axios';
@@ -16,8 +16,8 @@ class Login extends Component {
       show: false
     };
   }
-  async componentDidMount() {
-    this.props.getAdmin();
+  componentDidMount() {
+  //  this.props.toggle()
   }
 
   handleChange = e => {
@@ -25,24 +25,18 @@ class Login extends Component {
     this.setState({ [name]: value });
   };
 
-  componentDidUpdate(prevProps) {
-    if (prevProps !== this.props) {
-      this.render();
-    }
-  }
-
   login = () => {
     const { username, password } = this.state;
     axios
       .post('/api/login', { username, password })
-      .then(res => this.props.history.push('/renter'))
+      .then(res => this.props.history.push('/'))
       .catch(err => this.setState({show:true}));
   };
 
   render() {
-    if (this.props.admin.admin.loggedIn) {
-      return <Redirect to="/renter" />;
-    }
+    // if (this.props.admin.admin.loggedIn) {
+    //   return <Redirect to="/" />;
+    // }
     let { username, password } = this.state;
     return (
       <div className="login-page">
@@ -111,4 +105,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { login, getAdmin })(Login);
+export default withRouter(connect(mapStateToProps, { login, getAdmin })(Login));

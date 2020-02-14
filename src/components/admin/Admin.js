@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import './Admin.css';
-import { Redirect, Link } from 'react-router-dom';
+import { Redirect, Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getAdmin } from '../../redux/adminReducer';
 import { getProperties } from '../../redux/propertiesReducer';
@@ -8,20 +8,19 @@ import add from './addHosuse2-01.png';
 import Header from '../header/Header';
 
   function AdminDashboard(props) {
-  useEffect(()=>{
-  if (Boolean(props.admin.admin.renterCheck) === true)
-  return <Redirect to="/renter" />;
+  // useEffect(()=>{
+  // //   if (!props.admin.admin.loggedIn) {
+  // // props.getAdmin();
   
-     if (!props.admin.admin.loggedIn) {
-   props.getAdmin();
-  
-  if (!props.properties) props.getProperties();
-  }
-  })
+  // // if (!props.properties) props.getProperties();
+  // // }
+  // // if (Boolean(props.admin.admin.renterCheck) === true)
+  // // return <Redirect to="/renter" />;
+  // },[])
 
     let { loggedIn, renterCheck } = props.admin.admin;
-    if (!loggedIn) return <Redirect to="/login" />;
-    if (Boolean(renterCheck) === true) return <Redirect to="/renter" />;
+    // if (!loggedIn) return <Redirect to="/login" />;
+    // if (Boolean(renterCheck) === true) return <Redirect to="/renter" />;
 
     return (
       <div className="admin-dash-container">
@@ -31,7 +30,7 @@ import Header from '../header/Header';
             <Link
               className="picture-buttons-admin"
               to={'/propertiespreview'}
-              onClick={() => console.log('clicked')}
+              onClick={() => props.toggle(false)}
               style={{
                 backgroundImage:
                   'url(' +
@@ -48,7 +47,7 @@ import Header from '../header/Header';
             <Link
               to={'/directory/renters'}
               className="picture-buttons-admin"
-              onClick={() => console.log('clicked')}
+              onClick={() => props.toggle(false)}
               style={{
                 backgroundImage:
                   'url(' +
@@ -60,14 +59,14 @@ import Header from '../header/Header';
               }}
             >
               {' '}
-              <h1 class="centered1-admin">Renter Directory</h1>
+              <h1 className="centered1-admin">Renter Directory</h1>
             </Link>
           </div>
           <div className="rows-admin">
             <Link
               to={'/add/propertyinput'}
               className="picture-buttons-admin"
-              onClick={() => console.log('clicked')}
+              onClick={() => props.toggle(false)}
               style={{
                 backgroundImage: 'url(' + add + ')',
                 backgroundPosition: 'center',
@@ -76,12 +75,12 @@ import Header from '../header/Header';
               }}
             >
               {' '}
-              <h1 class="centered-admin">Add House</h1>
+              <h1 className="centered-admin">Add House</h1>
             </Link>
             <Link
               to={`/propertymanager/chat/`}
+              onClick={() => props.toggle(false)}
               className="picture-buttons-admin"
-              onClick={() => console.log('clicked')}
               style={{
                 backgroundImage:
                   'url(' +
@@ -92,7 +91,7 @@ import Header from '../header/Header';
                 backgroundRepeat: 'no-repeat'
               }}
             >
-              <div class="centered2-admin">
+              <div className="centered2-admin">
                 <h1>Messages</h1>
                 <div className="msg-counter">2</div>
               </div>
@@ -110,6 +109,6 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { getAdmin, getProperties })(
+export default withRouter(connect(mapStateToProps, { getAdmin, getProperties })(
   AdminDashboard
-);
+));

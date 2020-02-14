@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Properties.css';
 import { getProperties } from '../../redux/propertiesReducer';
 import { getAdmin } from '../../redux/adminReducer';
@@ -10,42 +10,39 @@ import RenterDisplay from '../renters/RenterDisplay';
 import SMSForm from '../../SMS/SMSForm';
 
 function Properties(props) {
+  const [property, setProperty] = useState({});
   useEffect(() => {
-    props.getProperties();
-    props.getAdmin();
+    getProperty();
   }, []);
 
-  useEffect(() => {
-    props.getRenters(props.match.params.prop_id);
-  }, [props.renters]);
-
-  if (!props.admin_id) return <Redirect to="/login" />;
-  if (Boolean(props.admin.admin.renterCheck) === true)
-    return <Redirect to="/renter" />;
-  let property = props.property.find(
-    property => property.prop_id === +props.match.params.prop_id
-  );
+  async function getProperty() {
+    await props.getProperties();
+    let foundProperty = props.properties.find(
+      property => property.prop_id === +props.match.params.prop_id
+    )
+    setProperty(foundProperty);
+  }
 
   const propertyVals = [
-    { val: property.property_name, text: 'property_name' },
-    { val: property.address, text: 'address' },
-    { val: property.num_beds, text: 'num_beds' },
-    { val: property.num_baths, text: 'num_baths' },
-    { val: property.square_footage, text: 'square_footage' },
-    { val: property.acreage, text: 'acreage' },
-    { val: property.rent, text: 'rent' },
-    { val: property.gas_company, text: 'gas_company' },
-    { val: property.electric_company, text: 'electric_company' },
-    { val: property.has_renter, text: 'has_renter' },
-    { val: property.fridge_included, text: 'fridge_included' },
-    { val: property.dishwasher_included, text: 'dishwasher_included' },
-    { val: property.washer_dryer_included, text: 'washer_dryer_included' },
-    { val: property.mortgage, text: 'mortgage' },
-    { val: property.tax_yearly, text: 'tax_yearly' }
+    'property_name',
+    'address',
+    'num_beds',
+    'num_baths',
+    'square_footage',
+    'acreage',
+    'rent',
+    'gas_company',
+    'electric_company',
+    'has_renter',
+    'fridge_included',
+    'dishwasher_included',
+    'washer_dryer_included',
+    'mortgage',
+    'tax_yearly'
   ].map(val => (
-    <div className="general-info-items-prop">
-      <h2>{val.text}</h2>
-      <h3>{val.val}</h3>
+    <div className="general-info-items-prop" key={val}>
+      <h2>{val}</h2>
+      <h3>{property[val]}</h3>
     </div>
   ));
 
@@ -70,8 +67,8 @@ function Properties(props) {
         <div className="prop-info-only">{propertyVals}</div>
       </div>
       <div className="renters-smsform">
-        <RenterDisplay prop_id={property.prop_id} />
-        <SMSForm prop_id={property.prop_id} />
+        <RenterDisplay prop_id={+props.match.params.prop_id} />
+        {/* <SMSForm prop_id={property.prop_id} /> */}
       </div>
     </div>
   );
@@ -82,7 +79,7 @@ function mapStateToProps(state) {
     admin: state.admin,
     admin_id: state.admin.admin.id,
     ...state.renters,
-    property: state.properties.properties
+    properties: state.properties.properties
   };
 }
 

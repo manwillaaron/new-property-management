@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import './Renter.css';
+import './RenterInputs.css';
 import { connect } from 'react-redux';
 import {
   addRenter,
@@ -12,7 +12,7 @@ import { getAdmin } from '../../redux/adminReducer';
 import Header from '../header/Header';
 import Input from '../input/Input';
 
-class Renter extends Component {
+class RenterInputs extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -34,15 +34,20 @@ class Renter extends Component {
   };
 
   render() {
-    const { first_name, last_name, phone_number, email, prop_id } = this.state;
     let inputArr = [
-      { text: 'first_name', val: first_name },
-      { text: 'last_name', val: last_name },
-      { text: 'phone_number', val: phone_number },
-      { text: 'email', val: email }
-    ].map((input, i) => (
-      <Input key={i} input={input} handleChange={this.handleChange} />
-    ));
+       'first_name',
+       'last_name',
+       'phone_number',
+       'email'
+    ]
+    
+    inputArr = inputArr.map((input, i) => {
+      return (
+        <Input key={i} val={this.state[input]}
+        text={input} handleChange={this.handleChange} />
+        )
+      }
+      )
 
     return (
       <div>
@@ -50,7 +55,7 @@ class Renter extends Component {
         <div>
           {inputArr}
           <button onClick={() => this.props.addRenter(this.state)}>
-            <Link to={`/moreinfo/${prop_id}`}>Add</Link>
+            <Link to={`/moreinfo/${this.state.prop_id}`}>Add</Link>
           </button>
         </div>
       </div>
@@ -68,4 +73,4 @@ export default connect(mapStateToProps, {
   editRenter,
   deleteRenter,
   getAdmin
-})(Renter);
+})(RenterInputs);

@@ -2,7 +2,11 @@ module.exports = {
   async getProperties(req, res) {
     const db = req.app.get('db');
     let properties = await db.get_properties_by_admin(req.session.admin.id);
-    res.send(properties);
+    if (properties.length > 0) {
+      res.status(200).send(properties);
+    } else {
+      res.sendStatus(404);
+    }
   },
 
   async editProperty(req, res) {
@@ -53,7 +57,7 @@ module.exports = {
       property_name,
       +propertyId
     ]);
-    res.send(properties);
+    res.staus(200).send(properties);
   },
 
   async deleteProperty(req, res) {
@@ -61,7 +65,7 @@ module.exports = {
     let { id } = req.session.admin;
     const db = req.app.get('db');
     let properties = await db.delete_property([+propertyId, id]);
-    res.send(properties);
+    res.staus(200).send(properties);
   },
 
   async addProperty(req, res) {
@@ -112,6 +116,6 @@ module.exports = {
       property_name,
       +id
     ]);
-    res.send(properties);
+    res.status(200).send(properties);
   }
 };

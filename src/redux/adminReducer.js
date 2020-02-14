@@ -1,5 +1,4 @@
 import axios from "axios";
-
 import {
   REGISTER,
   LOGIN,
@@ -66,7 +65,7 @@ export const signout = () => {
   };
 };
 
-export default function(state = initialState, action) {
+function adminReducer(state = initialState, action) {
   let { type, payload } = action;
   switch (type) {
     case REGISTER + "_FULFILLED":
@@ -87,3 +86,5 @@ export default function(state = initialState, action) {
       return state;
   }
 }
+
+export default adminReducer

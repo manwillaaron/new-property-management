@@ -6,8 +6,8 @@ module.exports = {
     let { username, password } = req.body;
     const db = req.app.get('db');
     const [existingAdmin] = await db.get_admin_by_username(username);
-    if (!existingAdmin) return res.status(401).send('Invalid username');
-    let result = await bcrypt.compareSync(password, existingAdmin.password)
+    if (!existingAdmin) return res.status(404).send('username not found');
+    let result = bcrypt.compareSync(password, existingAdmin.password);
     if (result) {
       req.session.admin = {
         username: existingAdmin.username,
@@ -16,7 +16,7 @@ module.exports = {
         renterCheck: existingAdmin.is_renter,
         firstName: existingAdmin.first_name
       };
-      res.send(req.session.admin);
+      res.status(200).send(req.session.admin);
     } else res.status(401).send('username or password incorrect');
   },
 
@@ -32,8 +32,8 @@ module.exports = {
     const db = req.app.get('db');
     let [existingAdmin] = await db.get_admin_by_username(username);
     if (existingAdmin) return res.status(401).send('Username already exists');
-    const  salt = bcrypt.genSaltSync(saltRounds)
-    const hash  = bcrypt.hashSync(password, salt)
+    const salt = bcrypt.genSaltSync(saltRounds);
+    const hash = bcrypt.hashSync(password, salt);
     let [admin] = await db.create_admin([
       username,
       hash,
@@ -49,19 +49,20 @@ module.exports = {
       renterCheck: admin.is_renter,
       firstName: first_name
     };
-    res.send(req.session.admin);
+    res.status(200).send(req.session.admin);
   },
   async signout(req, res) {
-    req.session.destroy();
+    await req.session.destroy();
+    if(req.session){
+      return res.sendStatus(500)
+    }
     res.sendStatus(200);
   },
   async getAdmin(req, res) {
-    return res.send(req.session.admin);
-  },
-  async renterCheck(req, res) {
-    const db = req.app.get('db');
-    let { id } = req.session;
-    let adminInfo = await db.renter_check(id);
-    res.send(adminInfo);
+    if(req.session && req.session.admin ){
+      res.status(200).send(req.session.admin);
+    }else {
+      res.sendStatus(404)
+    }
   }
 };

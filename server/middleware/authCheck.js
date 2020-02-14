@@ -1,6 +1,8 @@
 module.exports = (req, res, next) => {
-  if (!req.session.admin.loggedIn) {
-    return res.status(401).send("Not authorized");
+  if (req && req.session && req.session.admin ) {
+    next();
+  }else {
+    return res.status(404).send("Please Login");
+   
   }
-  next();
 };

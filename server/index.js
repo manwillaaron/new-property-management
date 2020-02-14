@@ -15,6 +15,7 @@ const path = require("path");
 const app = express();
 const server = require("http").Server(app);
 const io = require("socket.io")(server);
+const cors=  require('cors')
 
 const client = require("twilio")(
   process.env.TWILIO_ACCOUT_SID,
@@ -22,7 +23,7 @@ const client = require("twilio")(
 );
 
 app.use(bodyParser.urlencoded({ extended: false }));
-
+app.use(cors())
 
 app.use(express.json());
 
@@ -49,11 +50,13 @@ app.use(initSession);
 app.post("/api/login", ac.login);
 app.post("/api/register", ac.register);
 app.delete("/api/signout", ac.signout);
-app.get("/api/admin", authCheck, ac.getAdmin);
-app.get("/api/renterCheck", ac.renterCheck);
+// app.get("/api/renterCheck", ac.renterCheck);
 
+app.use(authCheck)
+
+app.get("/api/admin", ac.getAdmin);
 //property
-app.get("/api/properties/:adminId", pc.getProperties);
+app.get("/api/properties", pc.getProperties);
 app.put("/api/properties/:propertyId", pc.editProperty);
 app.delete("/api/properties/:propertyId", pc.deleteProperty);
 app.post("/api/property/add", pc.addProperty);
@@ -63,13 +66,15 @@ app.get("/api/renters/:propertyId", rc.getRenters);
 app.post("/api/renter/add", rc.addRenter);
 app.put("/api/renter/edit/:admin_id", rc.editRenter);
 app.delete("/api/renter/delete/:admin_id", rc.deleteRenter);
-app.get("/api/all/renters/:adminId", rc.getAllRenters);
+app.get("/api/all/renters", rc.getAllRenters);
 
 //Socket
 app.get("/api/messages/:admin_id", sockc.getMessages);
 app.get("/api/chatrooms/:admin_id", sockc.getAllChatrooms);
 app.post("/api/newmessage", sockc.saveMessage);
 app.delete('/api/delete/message/:message_id', sockc.deleteMessage);
+
+
 io.on("connection", socket => {
   console.log("A connection happened", socket.id);
   socket.on("needy", roomid => sockc.joinRoom(roomid, socket, io));
@@ -86,6 +91,7 @@ app.get("*", (req, res) => {
 
 
 // twillio
+
 app.post("/api/messages", (req, res) => {
   res.header("Content-Type", "application/json");
   client.messages

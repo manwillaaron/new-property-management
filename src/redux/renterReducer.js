@@ -20,8 +20,8 @@ export function getRenters(propertyId) {
   };
 }
 
-export function getAllRenters(adminId) {
-  let data = axios.get(`/api/all/renters/${adminId}`).then(res => res.data);
+export function getAllRenters() {
+  let data = axios.get(`/api/all/renters`).then(res => res.data);
 
   return {
     type: GET_ALL_RENTERS,
@@ -30,6 +30,7 @@ export function getAllRenters(adminId) {
 }
 
 export function addRenter(newRenter) {
+  console.log({newRenter})
   let data = axios
     .post(`/api/renter/add`, newRenter)
     .then(res => res.data);

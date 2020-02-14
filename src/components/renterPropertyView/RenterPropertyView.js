@@ -20,22 +20,13 @@ class RenterPropertyView extends Component {
 
   componentDidMount() {
     this.props.getProperties();
-    this.props.getAdmin();
   }
 
   render() {
-    if (!this.props.admin_id) return <Redirect to="/login" />;
-
-    let property = {};
-    if (this.props.properties) {
-      property = this.props.properties.find(
+    let property = this.props.properties.find(
         property => property.prop_id === +this.props.match.params.prop_id
       );
-    } else {
-      property = this.props.property.find(
-        property => property.prop_id === +this.props.match.params.prop_id
-      );
-    }
+  
 
     return (
       <div className="rpv-page" key={property.prop_id}>

@@ -11,8 +11,8 @@ const initialState = {
   error: false
 };
 
-export function getProperties(admin_id) {
-  let data = axios.get(`/api/properties/${admin_id}`).then(res => res.data);
+export function getProperties() {
+  let data = axios.get(`/api/properties`).then(res => res.data);
   return {
     type: GET_PROPERTIES,
     payload: data
