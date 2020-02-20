@@ -19,51 +19,9 @@ export function getProperties() {
   };
 }
 
-export function addProperty(
-  address,
-  num_beds,
-  num_baths,
-  square_footage,
-  acreage,
-  rent,
-  gas_company,
-  electric_company,
-  has_renter,
-  fridge_included,
-  dishwasher_included,
-  washer_dryer_included,
-  mortgage,
-  tax_yearly,
-  img_url,
-  img_url2,
-  img_url3,
-  img_url4,
-  img_url5,
-  property_name
-) {
+export function addProperty(property) {
   let data = axios
-    .post(`/api/property/add`, {
-      address,
-      num_beds,
-      num_baths,
-      square_footage,
-      acreage,
-      rent,
-      gas_company,
-      electric_company,
-      has_renter,
-      fridge_included,
-      dishwasher_included,
-      washer_dryer_included,
-      mortgage,
-      tax_yearly,
-      img_url,
-      img_url2,
-      img_url3,
-      img_url4,
-      img_url5,
-      property_name
-    })
+    .post(`/api/property/add`, property)
     .then(res => res.data);
   return {
     type: ADD_PROPERTY,
@@ -71,52 +29,9 @@ export function addProperty(
   };
 }
 
-export function editProperties(
-  propertyId,
-  address,
-  num_beds,
-  num_baths,
-  square_footage,
-  acreage,
-  rent,
-  gas_company,
-  electric_company,
-  has_renter,
-  fridge_included,
-  dishwasher_included,
-  washer_dryer_included,
-  mortgage,
-  tax_yearly,
-  img_url,
-  img_url2,
-  img_url3,
-  img_url4,
-  img_url5,
-  property_name
-) {
+export function editProperties(id, property) {
   let data = axios
-    .put(`/api/properties/${propertyId}`, {
-      address,
-      num_beds,
-      num_baths,
-      square_footage,
-      acreage,
-      rent,
-      gas_company,
-      electric_company,
-      has_renter,
-      fridge_included,
-      dishwasher_included,
-      washer_dryer_included,
-      mortgage,
-      tax_yearly,
-      img_url,
-      img_url2,
-      img_url3,
-      img_url4,
-      img_url5,
-      property_name
-    })
+    .put(`/api/properties/${id}`, property)
     .then(res => {
       return res.data;
     });

@@ -19,9 +19,6 @@ class Chat extends Component {
       chatMessages: [],
       textareaHeight: 38
     };
-    socket.on('newbie joined', messageFromServer => {
-      console.log(messageFromServer);
-    });
 
     socket.on('new message from sever', async message => {
       await this.props.getChatroomMessages(this.props.admin_id.admin_id);
@@ -52,20 +49,6 @@ class Chat extends Component {
     this.setState({ chatMessages: [] });
     this.setState({ chatMessages: this.props.messages });
   };
-
-  // async componentDidMount() {
-  //   if (!Boolean(this.props.admin.admin.rentChecker)) {
-  //     await this.props.getChatroomMessages(this.props.admin_id.admin_id);
-  //   } else {
-  //     await this.props.getChatroomMessages(this.props.admin.admin.id);
-  //   }
-  //   this.setState({
-  //     ...this.state.chatMessages,
-  //     chatMessages: this.props.messages
-  //   });
-  //   this.props.getChatroomMessages(this.props.admin_id.admin_id);
-  //   this.joinRoom();
-  // }
 
   joinRoom = () => {
     socket.emit('needy', 1234);

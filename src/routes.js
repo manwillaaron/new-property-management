@@ -16,12 +16,14 @@ import CheckoutForm from './CheckoutForm.js';
 import ChatDisplay from './components/chatDisplay/ChatDisplay.js';
 import PropertiesPreview from './components/propertiesPreview/PropertiesPreview.js';
 import Loading from './components/loading/Loading.js';
+import ExpenseInputs from './components/ExpenseInputs/ExpenseInputs';
 
 const Routes = ({ history, location }) => {
   const [data, call] = useAxios('/api/admin', history.push, location.pathname);
-  useEffect( _ => call(), [history.location.pathname]);
+  useEffect(_ => call(), [history.location.pathname]);
   return (
     <Switch>
+      <Route path="/add/propertyinput" component={PropertyInputs} />
       <Route path="/propertiespreview" component={PropertiesPreview} />
       <Route path="/loading" component={Loading} />
       <Route path="/moreinfo/:prop_id" component={Properties} />
@@ -29,22 +31,19 @@ const Routes = ({ history, location }) => {
       <Route path="/add/moreinfo" component={Properties} />
       <Route path="/propertyinput/:prop_id" component={PropertyInputs} />
       <Route path="/directory/renters" component={RenterDirectory} />
-      <Route path="/add/propertyinput" component={PropertyInputs} />
-      <Route
-        path="/add/renter/propertyinputs/:prop_id"
-        component={PropertyInputs}
-      />
+      <Route path="/add/renter/propertyinputs/:prop_id" component={PropertyInputs}/>
       <Route path="/edit/renters/:prop_id" component={RenterInputs} />
       <Route path="/add/renter/:prop_id" component={RenterInputs} />
-      )}
       <Route path="/pay/rent/:prop_rent" component={CheckoutForm} />
       <Route path="/renter" exact component={RenterDashboard} />
       <Route path="/register" component={Register} />
       <Route path="/renter/moreinfo/:prop_id" component={RenterPropertyView} />
       <Route path="/manager/chat/:admin_id" component={ChatDisplay} />
-      <Route path="/" exact component={() => <AdminDashboard />} />
-      <Route path="/login" component={() => <Login />} />
+      <Route path="/" exact component={AdminDashboard} />
+      <Route path="/login" component={Login} />
+      <Route path="/expenses" component={ExpenseInputs} />
     </Switch>
   );
 };
-export default withRouter(connect(null, { getAdmin })(Routes));
+
+export default withRouter(Routes);

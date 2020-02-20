@@ -93,18 +93,21 @@ app.get("*", (req, res) => {
 // twillio
 
 app.post("/api/messages", (req, res) => {
+  console.log(req.body);
+  const num=`+1${req.body.to}`
   res.header("Content-Type", "application/json");
   client.messages
   .create({
     from: process.env.TWILIO_PHONE_NUMBER,
-    to: `+1${req.body.to}`,
+    to: num,
     body: req.body.body
   })
   .then(() => {
+    console.log('sent successfully')
     res.send(JSON.stringify({ success: true }));
   })
   .catch(err => {
-    console.log("?????????????????", err);
+    console.log('MESSAGE FAILED', err)
     res.send(JSON.stringify({ success: false }));
   });
 });

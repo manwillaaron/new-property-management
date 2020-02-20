@@ -32,7 +32,7 @@ module.exports = {
       img_url4,
       img_url5,
       property_name
-    } = req.body;
+    } = req.body.inputsObj;
     const db = req.app.get('db');
     let properties = await db.edit_property([
       address,
@@ -57,7 +57,7 @@ module.exports = {
       property_name,
       +propertyId
     ]);
-    res.staus(200).send(properties);
+    res.status(200).send(properties);
   },
 
   async deleteProperty(req, res) {

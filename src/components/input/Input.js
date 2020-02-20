@@ -1,12 +1,14 @@
 import React from 'react'
+import '../login/Login.css'
 
 const Input = props => (
     <div>
     <input
+    style={{"width":"200px"}}
       placeholder={props.text.split('_').join(' ')}
-      className="property-inputs"
+      type={props.text==='password'&& 'password'}
       value={props.val}
-      onChange={e => props.handleChange(e)}
+      onChange={e => props.handleChange(e.target)}
       name={props.text}
     />
   </div>

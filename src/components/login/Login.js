@@ -1,64 +1,45 @@
 import React, { useState } from 'react';
 import './Login.css';
 import { login, getAdmin } from '../../redux/adminReducer';
-import { Link, Redirect, withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import logo from './Logo-rentops.png';
 import axios from 'axios';
 import SweetAlert from 'sweetalert2-react';
+import useInputs from '../../customHooks/useInputs';
+import Input from '../input/Input'
 
 function Login(props) {
+  const [inputsObj, inputsArr, input] = useInputs('login',props.match, false);
   const [show, toggleShow] = useState(false);
-  const [inputs, handle] = useState({ username: '', password: '' });
-
-  const handleChange = e => {
-  
-    const { value, name } = e.target;
-    handle({ ...inputs, [name]: value });
-  };
 
   const login = () => {
     axios
-      .post('/api/login', { username, password })
+      .post('/api/login', inputsObj)
       .then(res => props.history.push('/loading'))
       .catch(err => toggleShow(true));
   };
-  
-  let { username, password } = inputs;
   return (
     <div className="login-page">
       <img src={logo} className="title" alt="RentOps" />
       <div className="login-box">
-        <h1 className="login-title">Login</h1>
-        <div className="username-password-input-container">
-          <div className="username">
-            <h1>Username:</h1>
-            <input
-              className="input1"
-              value={username}
-              onChange={handleChange}
-              name="username"
-            />
-          </div>
-          <div className="password">
-            <h1>Password: </h1>
-            <input
-              type="password"
-              className="input2"
-              value={password}
-              onChange={handleChange}
-              name="password"
-              onKeyDown={ev => {
-                if (ev.key === 'Enter') {
-                  props.login(username, password);
-                  ev.preventDefault();
-                }
-              }}
-            />
-          </div>
-        </div>
+          {inputsArr.map(inp => (
+        <div className="username">
+           <Input className="input1" key={inp} val={inputsObj[inp]}
+        text={inp} handleChange={input} />
+            {/* <input
+              key={input}
+              type={input==='password'&& 'password'}
+              
+              placeholder={`${input}`}
+              name={`${input}`}
+              value={inputsObj[input]}
+              onChange={e => input(e.target)}
+            />*/}
+        </div> 
+          ))}
         <div className="button-container">
-          <button className="button" onClick={() => login(username, password)}>
+          <button className="button" onClick={() => login()}>
             Login
           </button>
           <SweetAlert

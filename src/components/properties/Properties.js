@@ -10,66 +10,67 @@ import RenterDisplay from '../renters/RenterDisplay';
 import SMSForm from '../../SMS/SMSForm';
 
 function Properties(props) {
-  const [property, setProperty] = useState({});
+  const [property, setProperty] = useState([{}]);
+  const [propertyVals, setPropetyVals] = useState([]);
+
+  console.log(props);
   useEffect(() => {
-    getProperty();
+    props.getProperties().then(res => setProperty(res.data))
   }, []);
 
-  async function getProperty() {
-    await props.getProperties();
-    let foundProperty = props.properties.find(
-      property => property.prop_id === +props.match.params.prop_id
-    )
-    setProperty(foundProperty);
-  }
-
-  const propertyVals = [
-    'property_name',
-    'address',
-    'num_beds',
-    'num_baths',
-    'square_footage',
-    'acreage',
-    'rent',
-    'gas_company',
-    'electric_company',
-    'has_renter',
-    'fridge_included',
-    'dishwasher_included',
-    'washer_dryer_included',
-    'mortgage',
-    'tax_yearly'
-  ].map(val => (
-    <div className="general-info-items-prop" key={val}>
-      <h2>{val}</h2>
-      <h3>{property[val]}</h3>
-    </div>
-  ));
-
+  const foundProperty = props.properties.filter(
+    p => p.prop_id === +props.match.params.prop_id
+  );
+  console.log(foundProperty);
   return (
-    <div className="more-info-page" key={property.prop_id}>
-      <div>
-        <Header />
-      </div>
-      <div className="all-prop-info">
-        <div className="property-image-container">
-          <Link
-            to={`/propertyinput/${props.match.params.prop_id}`}
-            className="property-image"
-            style={{
-              backgroundImage: 'url(' + `${property.img_url}` + ')',
-              backgroundPosition: 'center',
-              backgroundSize: 'cover',
-              backgroundRepeat: 'no-repeat'
-            }}
-          />
+    <div className="more-info-page">
+      {foundProperty[0] && (
+        <div className="more-info-page">
+          <Header />
+          <div className="all-prop-info">
+            <div className="property-image-container">
+              <Link
+                to={`/propertyinput/${props.match.params.prop_id}`}
+                className="property-image"
+                style={{
+                  backgroundImage: 'url(' + `${foundProperty[0].img_url}` + ')',
+                  backgroundPosition: 'center',
+                  backgroundSize: 'cover',
+                  backgroundRepeat: 'no-repeat'
+                }}
+              />
+            </div>
+            <div className="prop-info-only">
+              {[
+                'property_name',
+                'address',
+                'num_beds',
+                'num_baths',
+                'square_footage',
+                'acreage',
+                'rent',
+                'gas_company',
+                'electric_company',
+                'has_renter',
+                'fridge_included',
+                'dishwasher_included',
+                'washer_dryer_included',
+                'mortgage',
+                'tax_yearly'
+              ].map(val => (
+                <div className="general-info-items-prop" key={val}>
+                  <h2>{val}</h2>
+                  <h3>{foundProperty[0][val]}</h3>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="renters-smsform">
+            <RenterDisplay prop_id={+props.match.params.prop_id} />
+            <SMSForm prop_id={foundProperty[0].prop_id} />
+          </div>
         </div>
-        <div className="prop-info-only">{propertyVals}</div>
-      </div>
-      <div className="renters-smsform">
-        <RenterDisplay prop_id={+props.match.params.prop_id} />
-        {/* <SMSForm prop_id={property.prop_id} /> */}
-      </div>
+      )}
     </div>
   );
 }

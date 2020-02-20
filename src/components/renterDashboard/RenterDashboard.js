@@ -37,7 +37,6 @@ class RenterDashboard extends Component {
             <Link
               className="picture-buttons2"
               to={`/renter/moreinfo/${propObj.prop_id}`}
-              onClick={() => console.log('clicked')}
               style={{
                 backgroundImage: 'url(' + `${propObj.img_url}` + ')',
                 backgroundPosition: 'center',
@@ -50,7 +49,6 @@ class RenterDashboard extends Component {
             </Link>
             <Link
               className="picture-buttons"
-              onClick={() => console.log('clicked')}
               style={{
                 backgroundImage:
                   'url(' +
@@ -71,7 +69,6 @@ class RenterDashboard extends Component {
             <Link
               className="picture-buttons"
               to={`/propertymanager/chat/${this.props.admin.admin.id}`}
-              onClick={() => console.log('clicked')}
               style={{
                 backgroundImage:
                   'url(' +
@@ -88,7 +85,6 @@ class RenterDashboard extends Component {
             <Link
               to={`/manager/chat/${propObj.admin_id}`}
               className="picture-buttons1"
-              onClick={() => console.log('clicked', propObj)}
               style={{
                 backgroundImage:
                   'url(' +

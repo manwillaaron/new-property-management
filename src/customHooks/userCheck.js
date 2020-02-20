@@ -5,15 +5,15 @@ export const useAxios = (url, push, path) => {
   const [data, setData] = useState(url);
   const call = () => {
     axios
-    .get('api/admin')
+    .get('/api/admin')
     .then(res => {
       setData(res.data);
-      if (res.data.renterCheck === true && path === '/loading')
+      if (res.data === true && path === '/loading')
         return push('/renter');
-      if (res.data.id && !res.data.renterCheck && path === '/loading')
+      if (!res.data && path === '/loading')
         return push('/');
     })
-    .catch(_ => push('/login'));
+    .catch(() => push('/login'));
   }
   return [data, call];
 };

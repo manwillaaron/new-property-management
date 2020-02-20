@@ -30,7 +30,6 @@ export function getAllRenters() {
 }
 
 export function addRenter(newRenter) {
-  console.log({newRenter})
   let data = axios
     .post(`/api/renter/add`, newRenter)
     .then(res => res.data);
