@@ -8,7 +8,9 @@ const useInputs = (formName, match, properties) => {
   );
   const [inputsArr, setArr] = useState([]);
 
-  const input = ({ name, value }) => setInput({ ...inputsObj, [name]: value });
+  const input = ({ name, value }) => {
+    console.log(name,  value)
+    setInput({ ...inputsObj, [name]: value })};
 
   function getProp() {
     return properties.find(
@@ -74,5 +76,13 @@ var obj = {
     last_name: '',
     phone_number: '',
     email: ''
+  }, 
+  expense: { 
+    store: '',
+    amount: '',
+    prop_id: '',
+    transaction_date: '',
+    for_property: true
   }
 };
+

@@ -50,6 +50,7 @@ module.exports = {
       firstName: first_name
     };
     res.status(200).send(req.session.admin);
+    req.app.set('sesh', req.session.admin)
   },
   async signout(req, res) {
     await req.session.destroy();

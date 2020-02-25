@@ -4,15 +4,10 @@ import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getAdmin } from '../../redux/adminReducer';
 import { getProperties } from '../../redux/propertiesReducer';
-import add from './addHosuse2-01.png';
-import Header from '../header/Header';
-import ColorContext from '../../ColorContext'
 
-const AdminDashboard = props => {
-
-  return (
+const AdminDashboard = _ => (
     <div className="admin-dash-container">
-      <Header />
+      {/* <Header /> */}
       <div className="picture-button-container-admin">
         <div className="rows-admin">
           <Link
@@ -50,18 +45,18 @@ const AdminDashboard = props => {
         </div>
         <div className="rows-admin">
           <Link
-            to={'/add/propertyinput'}
+            to={"/expenses"}
             className="picture-buttons-admin"
             style={{
-              backgroundImage: 'url(' + add + ')',
+              backgroundImage: 'url(' + 'https://images.unsplash.com/photo-1560472355-536de3962603?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60' + ')',
               backgroundPosition: 'center',
               backgroundSize: 'cover',
               backgroundRepeat: 'no-repeat'
             }}
           >
             {' '}
-            <h1 className="centered-admin">Add House</h1>
-          </Link>
+            <h1 className="centered-admin">Expenses</h1>
+         </Link>
           <Link
             to={`/propertymanager/chat/`}
             className="picture-buttons-admin"
@@ -84,10 +79,9 @@ const AdminDashboard = props => {
       </div>
     </div>
   );
-};
+
 function mapStateToProps(state) {
   return {
-    ...state.admin,
     properties: state.properties
   };
 }

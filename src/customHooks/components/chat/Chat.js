@@ -1,15 +1,10 @@
 import React, { Component } from 'react';
 import io from 'socket.io-client';
 import './Chat.css';
-import {
-  getChatroomMessages,
-  getAllChatrooms,
-  saveMessage,
-  deleteMessage
-} from '../../redux/socketReducer';
+import { getAllChatrooms } from '../../../redux/socketReducer';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
-const socket = io.connect('http://localhost:4000');
+import { withRouter } from 'react-router-dom';
+const socket = io.connect();
 
 class Chat extends Component {
   constructor() {
@@ -17,51 +12,44 @@ class Chat extends Component {
     this.state = {
       message: '',
       chatMessages: [],
-      textareaHeight: 38
+      textareaHeight: 38,
+      chatroomId: null
     };
 
-    socket.on('new message from sever', async message => {
-      await this.props.getChatroomMessages(this.props.admin_id.admin_id);
+    socket.on('login', ({ chatMessages, chatroomId }) => {
+      this.setState({ chatroomId, chatMessages });
+    });
+
+    socket.on('deleted message', message => {
       this.setState({
-        chatMessages: [
-          ...this.props.messages.sort((a, b) => {
-            a = new Date(a.dateModified);
-            b = new Date(b.dateModified);
-            return a > b ? 1 : a < b ? -1 : 0;
-          })
-        ]
+        chatMessages: this.state.chatMessages.filter(
+          el => el.message_id !== message.message_id
+        )
       });
     });
-  }
-  // componentDidUpdate(prevProps) {
-  //   if (prevProps.messages.length > 0 && this.props.messages.length === 0) {
-  //     if (!Boolean(this.props.admin.admin.rentChecker)) {
-  //       this.props.getChatroomMessages(this.props.admin_id.admin_id);
-  //     } else {
-  //       this.props.getChatroomMessages(this.props.admin.admin.id);
-  //     }
-  //   }
-  //   return;
-  // }
 
-  deleteMessage = async message => {
-    await this.props.deleteMessage(message);
-    this.setState({ chatMessages: [] });
-    this.setState({ chatMessages: this.props.messages });
+    socket.on('new message from sever', async message => {
+      this.setState({ chatMessages: [message, ...this.state.chatMessages] });
+    });
+  }
+  componentDidMount() {
+    this.joinRoom();
+  }
+
+  deleteMessage = messageId => {
+    const { chatroomId } = this.state;
+    socket.emit('delete message', { messageId, chatroomId });
   };
 
   joinRoom = () => {
-    socket.emit('needy', 1234);
+    socket.emit('needy', this.props.match.params.admin_id);
   };
 
   sendMessage = async () => {
-    await this.props.saveMessage(
-      this.state.message,
-      this.props.admin_id.admin_id
-    );
+    const { chatroomId } = this.state;
 
     socket.emit('message to server', {
-      room: 1234,
+      chatroomId,
       message: this.state.message
     });
     this.setState({ message: '' });
@@ -194,9 +182,8 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, {
-  saveMessage,
-  getChatroomMessages,
-  getAllChatrooms,
-  deleteMessage
-})(Chat);
+export default withRouter(
+  connect(mapStateToProps, {
+    getAllChatrooms
+  })(Chat)
+);

@@ -26,7 +26,7 @@ function Properties(props) {
     <div className="more-info-page">
       {foundProperty[0] && (
         <div className="more-info-page">
-          <Header />
+          {/* <Header /> */}
           <div className="all-prop-info">
             <div className="property-image-container">
               <Link

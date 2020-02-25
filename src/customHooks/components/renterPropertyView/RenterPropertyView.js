@@ -7,7 +7,6 @@ import {
 } from "../../redux/propertiesReducer";
 import { getRenters, deleteRenter } from "../../redux/renterReducer";
 import { connect } from "react-redux";
-import { Redirect } from "react-router-dom";
 import Header from "../header/Header";
 import { getAdmin } from "../../redux/adminReducer";
 
@@ -23,6 +22,7 @@ class RenterPropertyView extends Component {
   }
 
   render() {
+    console.log(this.props)
     let property = this.props.properties.find(
         property => property.prop_id === +this.props.match.params.prop_id
       );
@@ -30,7 +30,7 @@ class RenterPropertyView extends Component {
 
     return (
       <div className="rpv-page" key={property.prop_id}>
-        <Header />
+        {/* <Header /> */}
         <div className="property-info-container">
           <div className="property-images">
             <img className="prop-img-renter" src={property.img_url} alt="" />
@@ -77,7 +77,7 @@ function mapStateToProps(state) {
   return {
     admin_id: state.admin.admin.id,
     ...state.renters,
-    property: state.properties.properties
+    properties: state.properties.properties
   };
 }
 

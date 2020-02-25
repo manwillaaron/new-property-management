@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './Header.css';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { signout, getAdmin } from '../../redux/adminReducer';
+import { signout, getAdmin } from '../../../redux/adminReducer';
 import logo from './Logo-rentops.png';
 
 const Header = (props) => (
@@ -20,10 +20,10 @@ const Header = (props) => (
         {' '}
         Log Out
       </Link>
-      <Link className="header-buttons" to="/">
+      <button className="header-buttons" onClick={()=>props.history.goBack()}>
         {' '}
         Go Back
-      </Link>
+      </button>
     </div>
   </div>
 );

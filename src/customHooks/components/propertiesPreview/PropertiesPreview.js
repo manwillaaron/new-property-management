@@ -4,22 +4,26 @@ import { connect } from 'react-redux';
 import { getProperties } from '../../redux/propertiesReducer';
 import PropertyPreview from '../propertyPreview/PropertyPreview';
 import Header from '../header/Header';
+import { Link } from 'react-router-dom';
 
 function PropertiesPreview(props) {
   React.useEffect(() => {
     props.getProperties();
-  },[]);
+  }, []);
+
   const { properties } = props;
   return (
     <div className="map-container">
-      <Header />
-      {props.properties[0] &&
-      properties.map(property => (
-        <div className="prop-container" key={property.prop_id}>
-          <PropertyPreview {...property} />
-        </div>
-      ))
-    }
+      {/* <Header /> */}
+      <Link to={'/add/propertyinput'}>Add Property</Link>
+      <div className="prop-container">
+        {props.properties[0] &&
+          properties.map(property => (
+            <div key={property.prop_id}>
+              <PropertyPreview {...property} />
+            </div>
+          ))}
+      </div>
     </div>
   );
 }

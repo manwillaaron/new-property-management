@@ -1,4 +1,4 @@
 delete from messages 
-where message_id = $1;
+where message_id = $1
+returning *;
 
-select * from messages;

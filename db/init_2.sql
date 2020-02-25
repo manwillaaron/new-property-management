@@ -38,7 +38,6 @@ property_name text
 CREATE TABLE properties_admin (
 admin_id INTEGER NOT NULL,
 prop_id INTEGER NOT NULL
-
 ) ;
 
 ALTER TABLE properties_admin ADD CONSTRAINT properties_admin_fk0 FOREIGN KEY (prop_id) REFERENCES properties(prop_id);
@@ -59,4 +58,15 @@ create table chat_junction (
 message_id serial PRIMARY KEY,
 chatroom_id INTEGER REFERENCES chat_junction(chatroom_id),
 message_content text
+);
+
+drop table expenses;
+
+create table expenses (
+    id serial primary key,
+    store varchar(200),
+    amount money,
+    prop_id int REFERENCES properties(prop_id),
+    transaction_date date,
+    for_property BOOLEAN
 );

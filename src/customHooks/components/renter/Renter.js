@@ -27,7 +27,7 @@ const Renter = props => (
     <div />
     <div className="renter-elements-btns">
       <button className="rent-but-style">
-        <Link to={`/directory/renters/chat/${props.renter.admin_id}`}>
+        <Link to={`/manager/chat/${props.renter.admin_id}`}>
           chat with {props.renter.first_name}
         </Link>
       </button>

@@ -31,7 +31,7 @@ class RenterDashboard extends Component {
     let propObj = this.getSingleObj();
     return (
       <div className="renter-dash-container">
-        <Header />
+        {/* <Header /> */}
         <div className="picture-button-container">
           <div className="rows-renter">
             <Link

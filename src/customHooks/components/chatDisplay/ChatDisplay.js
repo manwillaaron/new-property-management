@@ -6,7 +6,7 @@ import Header from '../header/Header';
 
 const ChatDisplay = (props) => (
   <div className="chat-display">
-    <Header />
+    {/* <Header /> */}
     <Chat admin_id={props.match.params} />
   </div>
 );

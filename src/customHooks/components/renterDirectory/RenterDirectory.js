@@ -32,7 +32,7 @@ class RenterDirectory extends Component {
     }
     return (
           <div className="renter-directory-page">
-            <Header />
+            {/* <Header /> */}
             <div className="renters-container">
               {renters.map(renter => (
                 <div className="renter-containers" key={renter.admin_id}>
