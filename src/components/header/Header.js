@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './Header.css';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { signout, getAdmin } from '../../../redux/adminReducer';
+import { signout, getAdmin } from '../../redux/adminReducer';
 import logo from './Logo-rentops.png';
 
 const Header = (props) => (

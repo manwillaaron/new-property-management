@@ -3,7 +3,6 @@ import './Login.css';
 import { login, getAdmin } from '../../redux/adminReducer';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import logo from './Logo-rentops.png';
 import axios from 'axios';
 import SweetAlert from 'sweetalert2-react';
 import useInputs from '../../customHooks/useInputs';
@@ -21,21 +20,12 @@ function Login(props) {
   };
   return (
     <div className="login-page">
-      <img src={logo} className="title" alt="RentOps" />
+      <div/>
       <div className="login-box">
           {inputsArr.map(inp => (
         <div className="username">
            <Input className="input1" key={inp} val={inputsObj[inp]}
         text={inp} handleChange={input} />
-            {/* <input
-              key={input}
-              type={input==='password'&& 'password'}
-              
-              placeholder={`${input}`}
-              name={`${input}`}
-              value={inputsObj[input]}
-              onChange={e => input(e.target)}
-            />*/}
         </div> 
           ))}
         <div className="button-container">

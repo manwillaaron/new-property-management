@@ -80,9 +80,9 @@ var obj = {
   expense: { 
     store: '',
     amount: '',
-    prop_id: '',
     transaction_date: '',
-    for_property: true
+    for_property: true,
+    prop_id: null
   }
 };
 

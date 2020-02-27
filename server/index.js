@@ -14,10 +14,10 @@ const is = require('./middleware/initSession');
 const path = require('path');
 const app = express();
 const cors = require('cors');
-const client = require('twilio')(
-  process.env.TWILIO_ACCOUT_SID,
-  process.env.TWILIO_AUTH_TOKEN
-);
+// const client = require('twilio')(
+//   process.env.TWILIO_ACCOUT_SID,
+//   process.env.TWILIO_AUTH_TOKEN
+// );
 app.use(cors());
 
 app.use(express.json({ extended: false }));
@@ -83,8 +83,8 @@ app.delete('/api/properties/:propertyId', pc.deleteProperty);
 app.post('/api/property/add', pc.addProperty);
 
 //expenses
-app.get('/api/expenses/:adminId')
-app.post('/api/expense/add/:propertyId', ec.addExpense)
+app.get('/api/expenses')
+app.post('/api/add/expense', ec.addExpense)
 
 //renters
 app.get('/api/renters/:propertyId', rc.getRenters);
@@ -102,25 +102,25 @@ app.get('*', (req, res) => {
 
 // twillio
 
-app.post('/api/messages', (req, res) => {
-  console.log(req.body);
-  const num = `+1${req.body.to}`;
-  res.header('Content-Type', 'application/json');
-  client.messages
-    .create({
-      from: process.env.TWILIO_PHONE_NUMBER,
-      to: num,
-      body: req.body.body
-    })
-    .then(() => {
-      console.log('sent successfully');
-      res.send(JSON.stringify({ success: true }));
-    })
-    .catch(err => {
-      console.log('MESSAGE FAILED', err);
-      res.send(JSON.stringify({ success: false }));
-    });
-});
+// app.post('/api/messages', (req, res) => {
+//   console.log(req.body);
+//   const num = `+1${req.body.to}`;
+//   res.header('Content-Type', 'application/json');
+//   client.messages
+//     .create({
+//       from: process.env.TWILIO_PHONE_NUMBER,
+//       to: num,
+//       body: req.body.body
+//     })
+//     .then(() => {
+//       console.log('sent successfully');
+//       res.send(JSON.stringify({ success: true }));
+//     })
+//     .catch(err => {
+//       console.log('MESSAGE FAILED', err);
+//       res.send(JSON.stringify({ success: false }));
+//     });
+// });
 
 app.use(express.static(`${__dirname}/../build`));
 

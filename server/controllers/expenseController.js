@@ -1,8 +1,23 @@
+const fetch = require('node-fetch');
 module.exports = {
-  addExpense(req, res) {
-    const db = req.app.get(db);
-    console.log(req.body, req.params)
-    // let expense  = await db.add_expense(req.body);
-    // res.status(200).send(expense)
+  async addExpense(req, res) {
+    console.log('hit expense controller', req.body);
+
+    const db = req.app.get('db');
+    let [expense] = await db.add_expense(req.body);
+    console.log(expense);
+
+    fetch('https://hooks.zapier.com/hooks/catch/6802367/om8igiy/silent/', {
+      mode: 'no-cors',
+      body: JSON.stringify({
+        ...expense,
+        property_name: req.body.property_name
+      }),
+      headers: {
+        'Content-type': 'application/json'
+      },
+      method:    'post'
+    });
+    res.status(200).send(expense);
   }
 };

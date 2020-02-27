@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import io from 'socket.io-client';
 import './Chat.css';
-import { getAllChatrooms } from '../../../redux/socketReducer';
+import { getAllChatrooms } from '../../redux/socketReducer';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 const socket = io.connect();
