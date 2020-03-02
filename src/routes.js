@@ -1,7 +1,5 @@
 import React, { useEffect } from 'react';
 import { Switch, Route, withRouter } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { getAdmin } from './redux/adminReducer';
 import { useAxios } from './customHooks/userCheck';
 import AdminDashboard from './components/adminDashboard/AdminDashboard.js';
 import Login from './components/login/Login.js';
@@ -17,6 +15,8 @@ import ChatDisplay from './components/chatDisplay/ChatDisplay.js';
 import PropertiesPreview from './components/propertiesPreview/PropertiesPreview.js';
 import Loading from './components/loading/Loading.js';
 import ExpenseInputs from './components/ExpenseInputs/ExpenseInputs';
+import Expenses from './components/Expenses/Expenses';
+import ExpenseDash from './components/ExpenseDash/ExpenseDash';
 import Header from './components/header/Header';
 
 const Routes = ({ history, location }) => {
@@ -50,7 +50,9 @@ const Routes = ({ history, location }) => {
         <Route path="/manager/chat/:admin_id" component={ChatDisplay} />
         <Route path="/" exact component={AdminDashboard} />
         <Route path="/login" component={Login} />
-        <Route path="/expenses" component={ExpenseInputs} />
+        <Route path="/input/expenses" component={ExpenseInputs} />
+        <Route path="/expense/report/:id" component={Expenses} />
+        <Route path="/dash/expense" component={ExpenseDash} />
       </Switch>
     </div>
   );

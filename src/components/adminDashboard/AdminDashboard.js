@@ -45,7 +45,7 @@ const AdminDashboard = _ => (
         </div>
         <div className="rows-admin">
           <Link
-            to={"/expenses"}
+            to={"/dash/expense"}
             className="picture-buttons-admin"
             style={{
               backgroundImage: 'url(' + 'https://images.unsplash.com/photo-1560472355-536de3962603?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60' + ')',

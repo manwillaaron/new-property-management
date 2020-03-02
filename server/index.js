@@ -83,7 +83,7 @@ app.delete('/api/properties/:propertyId', pc.deleteProperty);
 app.post('/api/property/add', pc.addProperty);
 
 //expenses
-app.get('/api/expenses')
+app.get('/api/expenses/:id', ec.getExpenses)
 app.post('/api/add/expense', ec.addExpense)
 
 //renters

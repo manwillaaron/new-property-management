@@ -16,8 +16,15 @@ module.exports = {
       headers: {
         'Content-type': 'application/json'
       },
-      method:    'post'
+      method: 'post'
     });
     res.status(200).send(expense);
+  },
+  async getExpenses(req, res) {
+    const db = req.app.get('db');
+    const expenses = await db.query(
+      `select * from expenses where prop_id = ${+req.params.id}`
+    );
+    res.status(200).send(expenses)
   }
 };
