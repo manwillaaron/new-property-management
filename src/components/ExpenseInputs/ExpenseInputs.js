@@ -48,7 +48,7 @@ const ExpenseInputs = props => {
     console.log(inputsObj);
     axios
       .post(`/api/add/expense`, { ...inputsObj, property_name: propertyName })
-      .then(res => props.history.push('/expenses'))
+      .then(_ => props.history.push('/dash/expense'))
       .catch(err => console.log({ err }));
   }
 

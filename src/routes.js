@@ -15,7 +15,7 @@ import ChatDisplay from './components/chatDisplay/ChatDisplay.js';
 import PropertiesPreview from './components/propertiesPreview/PropertiesPreview.js';
 import Loading from './components/loading/Loading.js';
 import ExpenseInputs from './components/ExpenseInputs/ExpenseInputs';
-import Expenses from './components/Expenses/Expenses';
+import Expenses from './components/expenses/Expenses';
 import ExpenseDash from './components/ExpenseDash/ExpenseDash';
 import Header from './components/header/Header';
 

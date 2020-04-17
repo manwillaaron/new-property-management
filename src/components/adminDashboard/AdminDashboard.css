@@ -4,28 +4,29 @@
     display: flex;
     flex-direction: column;
     flex: 1;
-
-}
-
-.admin-dash-container {
+    
+  }
+  
+  .admin-dash-container {
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     flex: 1;
+    margin-top: 16px ;
+    background: rgb(237, 248, 248);
   }
   
   .picture-button-container-admin {
     width: 90%;
     display: flex;
-    /* justify-content: space-between; */
     flex-wrap: wrap;
   }
   .rows-admin {
     width: 100%;
     display: flex;
-    justify-content: space-evenly;
-    margin-bottom: 0.5%;
+    justify-content: space-around;
+    margin-bottom: 15px;
   
   }
   
@@ -99,6 +100,7 @@
     color: white;
     font-size: 26px;
     font-style: italic;
+    border-radius:  5px;
   }
   
   .picture-buttons-admin:hover {
@@ -109,7 +111,6 @@
     .picture-button-container-admin {
       width: 90%;
       display: flex;
-      /* justify-content: space-between; */
       flex-wrap: wrap;
   }
   }

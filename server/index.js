@@ -11,7 +11,6 @@ const ec = require('./controllers/expenseController');
 const { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET } = process.env;
 const authCheck = require('./middleware/authCheck');
 const is = require('./middleware/initSession');
-const path = require('path');
 const app = express();
 const cors = require('cors');
 // const client = require('twilio')(
@@ -84,6 +83,7 @@ app.post('/api/property/add', pc.addProperty);
 
 //expenses
 app.get('/api/expenses/:id', ec.getExpenses)
+app.get('/api/current/expenses', ec.getAdminExpenses)
 app.post('/api/add/expense', ec.addExpense)
 
 //renters
@@ -95,10 +95,6 @@ app.get('/api/all/renters', rc.getAllRenters);
 
 //stripe
 app.post('/api/payment', sc.pay);
-app.use(express.static(__dirname + '/../build'));
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../build/index.html'));
-});
 
 // twillio
 
@@ -122,6 +118,4 @@ app.get('*', (req, res) => {
 //     });
 // });
 
-app.use(express.static(`${__dirname}/../build`));
 
-app.listen(4000, () => console.log('listening'));

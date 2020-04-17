@@ -26,5 +26,15 @@ module.exports = {
       `select * from expenses where prop_id = ${+req.params.id}`
     );
     res.status(200).send(expenses)
+  }, 
+  async getAdminExpenses(req, res) {
+    console.log(req.session)
+    const db = req.app.get('db');
+    const expenses = await db.query(
+      `select * from expenses e 
+      join properties_admin p using(prop_id)
+      where admin_id = ${+req.session.admin.id}`
+    );
+    res.status(200).send(expenses)
   }
 };

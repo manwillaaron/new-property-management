@@ -6,12 +6,14 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 function ExpenseDash(props) {
-  const [dates, setDate] = useState({ start: '', end: '' });
+  const [dates, setDate] = useState({ start: formatDate(Date.now()-(1000*60*60*24)) , end: '' });
   const [property, setProperty] = useState(null);
   const [expenseList, setList] = useState([]);
 
   useEffect(() => {
+    autoMonth({value:formatDate(Date.now()-(1000*60*60*24))})
     props.getProperties();
+    axios.get('/api/current/expenses').then(res => setList([...res.data]))
   }, []);
 
   const setPropId = value => {
@@ -29,7 +31,22 @@ function ExpenseDash(props) {
     return n;
   }
 
+  function formatDate(date) {
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (month.length < 2) 
+        month = '0' + month;
+    if (day.length < 2) 
+        day = '0' + day;
+
+    return [year, month, day].join('-');
+}
+
   function autoMonth({ value }) {
+    console.log(value, formatDate(Date.now()-(1000*60*60*24)))
     let monthChange = 1;
     let yearChange = 0;
     const dArr = value.split('-');
@@ -52,6 +69,7 @@ function ExpenseDash(props) {
   const endNum = +dates.end.split('-').join('');
 
   const filteredExpenses = expenseList.filter(ex => {
+    console.log(dates.start)
     const exNum = +ex.transaction_date.split('-').join('');
     if (exNum > startNum && exNum < endNum) return true;
   });
@@ -76,6 +94,7 @@ function ExpenseDash(props) {
         id="date"
         type="date"
         label="Start date"
+        defaultValue={formatDate(Date.now())}
         onChange={e => autoMonth(e.target)}
         InputLabelProps={{
           shrink: true
