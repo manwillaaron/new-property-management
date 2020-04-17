@@ -1,19 +1,20 @@
 .header {
-  height: 160px;
+  height: 86px;
   width: 100%;
-  background: rgb(147, 164, 147);
+  background: rgb(237, 248, 248);
+  border-bottom: 1px solid #253237;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 0.5%;
 }
 
 .header-title-container {
-  width: 80%;
+  width: 95%;
   height: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: start;
+  align-items: center;
   margin-top: 2px;
 }
 .spacer-header {
@@ -21,11 +22,8 @@
 }
 
 .header-title {
-  width: 350px;
-  height: 155px;
-  position: relative;
-  align-self: center;
-  justify-self: center;
+  width: 150px;
+  height: 55px;
 }
 
 @media only screen and (max-width: 550px) {

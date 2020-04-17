@@ -20,7 +20,6 @@ function Login(props) {
   };
   return (
     <div className="login-page">
-      <div/>
       <div className="login-box">
           {inputsArr.map(inp => (
         <div className="username">
