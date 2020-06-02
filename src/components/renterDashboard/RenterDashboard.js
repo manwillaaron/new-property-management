@@ -3,9 +3,8 @@ import './RenterDashboard.css';
 import { getAdmin } from '../../redux/adminReducer';
 import { getProperties } from '../../redux/propertiesReducer';
 import { connect } from 'react-redux';
-import Header from '../header/Header';
-import { Redirect, Link } from 'react-router-dom';
-import CheckoutForm from '../../CheckoutForm';
+import { Link } from 'react-router-dom';
+import CheckoutForm from '../checkoutForm/CheckoutForm';
 
 class RenterDashboard extends Component {
   constructor() {
@@ -31,7 +30,6 @@ class RenterDashboard extends Component {
     let propObj = this.getSingleObj();
     return (
       <div className="renter-dash-container">
-        {/* <Header /> */}
         <div className="picture-button-container">
           <div className="rows-renter">
             <Link
