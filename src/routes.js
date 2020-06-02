@@ -10,7 +10,7 @@ import RenterInputs from './components/renters/RenterInputs';
 import RenterDashboard from './components/renterDashboard/RenterDashboard';
 import RenterDirectory from './components/renterDirectory/RenterDirectory';
 import RenterPropertyView from './components/renterPropertyView/RenterPropertyView.js';
-import CheckoutForm from './CheckoutForm.js';
+import CheckoutForm from '../src/components/checkoutForm/CheckoutForm';
 import ChatDisplay from './components/chatDisplay/ChatDisplay.js';
 import PropertiesPreview from './components/propertiesPreview/PropertiesPreview.js';
 import Loading from './components/loading/Loading.js';
@@ -18,9 +18,9 @@ import ExpenseInputs from './components/ExpenseInputs/ExpenseInputs';
 import Expenses from './components/expenses/Expenses';
 import ExpenseDash from './components/ExpenseDash/ExpenseDash';
 import Header from './components/header/Header';
-
+ 
 const Routes = ({ history, location }) => {
-  const [data, call] = useAxios('/api/admin', history.push, location.pathname);
+  const [  , call] = useAxios('/api/admin', history.push, location.pathname);
   useEffect(_ => call(), [history.location.pathname]);
   return (
     <div>

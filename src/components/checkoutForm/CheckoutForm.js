@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import StripeCheckout from 'react-stripe-checkout';
 import axios from 'axios';
-import logo from './Logo-rentops-stripe.png';
+import logo from '../../Logo-rentops-stripe.png';
 
 class CheckoutForm extends Component {
   constructor() {
@@ -17,7 +17,6 @@ class CheckoutForm extends Component {
     } else if (this.props.rent === undefined) {
       await this.setState({ amount: 0 });
     }
-
   }
 
   onToken = token => {

@@ -12,15 +12,17 @@ const Header = (props) => (
       <img src={logo} className="header-title" alt="RentOps" />
     </div>
     <div className="header-button-container">
-      <Link
-        onClick={async e => props.signout()}
-        className="header-button-logout"
-        to="/login"
+      <button
+        className="header-buttons"
+        onClick={e => {
+          props.signout()
+          props.history.push('/login')
+        }}
       >
         {' '}
         Log Out
-      </Link>
-      <button className="header-buttons" onClick={()=>props.history.goBack()}>
+      </button>
+      <button className="header-buttons" onClick={() => props.history.goBack()}>
         {' '}
         Go Back
       </button>

@@ -13,12 +13,13 @@ const authCheck = require('./middleware/authCheck');
 const is = require('./middleware/initSession');
 const app = express();
 const cors = require('cors');
+const path = require('path');
 // const client = require('twilio')(
 //   process.env.TWILIO_ACCOUT_SID,
 //   process.env.TWILIO_AUTH_TOKEN
 // );
 app.use(cors());
-
+app.use( express.static( `${__dirname}/../build`));
 app.use(express.json({ extended: false }));
 
 app.use(is);
@@ -118,4 +119,10 @@ app.post('/api/payment', sc.pay);
 //     });
 // });
 
+
+
+
+app.get('*', (req, res)=>{
+    res.sendFile(path.join(__dirname, '../build/index.html'));
+});
 
