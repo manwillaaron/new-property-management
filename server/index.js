@@ -19,7 +19,7 @@ const path = require('path');
 //   process.env.TWILIO_AUTH_TOKEN
 // );
 app.use(cors());
-app.use( express.static( `${__dirname}/../build`));
+
 app.use(express.json({ extended: false }));
 
 app.use(is);
@@ -73,7 +73,7 @@ app.post('/api/login', ac.login);
 app.post('/api/register', ac.register);
 app.delete('/api/signout', ac.signout);
 
-app.use(authCheck);
+// app.use(authCheck); 
 
 app.get('/api/admin', ac.getAdmin);
 //property
@@ -120,7 +120,7 @@ app.post('/api/payment', sc.pay);
 // });
 
 
-
+app.use( express.static( `${__dirname}/../build`));
 
 app.get('*', (req, res)=>{
     res.sendFile(path.join(__dirname, '../build/index.html'));
