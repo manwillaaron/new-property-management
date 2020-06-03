@@ -10,7 +10,7 @@ import RenterInputs from './components/renters/RenterInputs';
 import RenterDashboard from './components/renterDashboard/RenterDashboard';
 import RenterDirectory from './components/renterDirectory/RenterDirectory';
 import RenterPropertyView from './components/renterPropertyView/RenterPropertyView.js';
-import CheckoutForm from '../src/components/checkoutForm/CheckoutForm';
+import CheckoutForm from './components/checkoutForm/CheckoutForm';
 import ChatDisplay from './components/chatDisplay/ChatDisplay.js';
 import PropertiesPreview from './components/propertiesPreview/PropertiesPreview.js';
 import Loading from './components/loading/Loading.js';
