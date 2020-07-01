@@ -39,7 +39,10 @@ app.use((req, res, next) => {
   next();
 });
 
-massive(CONNECTION_STRING).then(async db => {
+massive({
+  connectionString: CONNECTION_STRING,
+  ssl: {rejectUnauthorized: false}
+}).then(async db => {
   app.set('db', db);
   console.log('db is all good');
 
