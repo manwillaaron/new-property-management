@@ -13,7 +13,10 @@ export const useAxios = (url, push, path) => {
       if (!res.data && path === '/loading')
         return push('/');
     })
-    .catch(() => push('/login'));
+    .catch(() =>{ 
+      if(path === '/register') return;
+      push('/login')
+  });
   }
   return [data, call];
 };
