@@ -2,7 +2,6 @@ import React from 'react'
 import '../login/Login.css'
 
 const Input = props => {
-  console.log(props) 
   return (
     <div>
     <input
@@ -10,7 +9,7 @@ const Input = props => {
       placeholder={props.text.split('_').join(' ')}
       type={props.text==='password'&& 'password'}
       value={props.val}
-      onChange={e => props.handleChange(e)}
+      onChange={e => props.handleChange(e.target)}
       name={props.text}
     />
   </div>

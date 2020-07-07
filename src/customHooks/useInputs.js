@@ -9,7 +9,6 @@ const useInputs = (formName, match, properties) => {
   const [inputsArr, setArr] = useState([]);
 
   const input = ({ name, value }) => {
-    console.log(name,  value)
     setInput({ ...inputsObj, [name]: value })};
 
   function getProp() {

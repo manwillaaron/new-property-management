@@ -18,15 +18,17 @@ function Login(props) {
       .then(res => props.history.push('/loading'))
       .catch(err => toggleShow(true));
   };
+  console.log(inputsObj, inputsArr)
   return (
     <div className="login-page">
       <div className="login-box">
-          {inputsArr.map(inp => (
+          {inputsArr.map(inp => {
+            return(
         <div className="username">
            <Input className="input1" key={inp} val={inputsObj[inp]}
-        text={inp} handleChange={input} />
+          text={inp} handleChange={input} />
         </div> 
-          ))}
+          )})}
         <div className="button-container">
           <button className="button" onClick={() => login()}>
             Login
