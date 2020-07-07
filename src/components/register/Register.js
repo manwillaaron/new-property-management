@@ -76,7 +76,7 @@ class Register extends Component {
       { text: 'last_name', val: last_name },
       { text: 'phone_number', val: phone_number },
       { text: 'email', val: email }
-    ].map((input, i) => <Input key={i} input={input} handleChange={this.handleChange} />);
+    ].map((input, i) => <Input key={i} text={input.text} val={input.val} handleChange={this.handleChange} />);
 
     return (
       <div className="register-page">
