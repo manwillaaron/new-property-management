@@ -57,7 +57,8 @@ create table chat_junction (
  create table messages (
 message_id serial PRIMARY KEY,
 chatroom_id INTEGER REFERENCES chat_junction(chatroom_id),
-message_content text
+message_content text,
+admin_id_messages int REFERENCES admin(admin_id)
 );
 
 drop table expenses;
@@ -70,3 +71,13 @@ create table expenses (
     transaction_date date,
     for_property BOOLEAN
 );
+
+create table repairs (
+    repair_id serial primary key,
+    prop_id int references properties(prop_id),
+    admin_id int references admin(admin_id),
+    repair_description text,
+    occurence_date varchar(9),
+    status varchar(20),
+    completed BOOLEAN
+)

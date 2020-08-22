@@ -16,7 +16,7 @@ a_id2 as (insert into properties_admin ( prop_id, admin_id)
 values(${prop_id},(select admin_id from a_id))
 returning admin_id
 )
-insert into chat_junction (admin_id_pm, admin_id_rent)
+insert into chat_junction (admin_id, admin_id_renter)
 values (
    (select a.admin_id from admin a
     join properties_admin pa         

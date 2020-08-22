@@ -2,9 +2,9 @@ module.exports = {
   async joinRoom(admin_id, sesh, { db, io, socket }) {
     let [chatroom_id] = await db.query(
       `select chatroom_id from chat_junction 
-      where (admin_id_pm = ${+admin_id} or  admin_id_rent = ${+admin_id} )  
+      where (admin_id = ${+admin_id} or  admin_id_renter = ${+admin_id} )  
       and
-      (admin_id_pm = ${+sesh.id} or  admin_id_rent = ${+sesh.id})`
+      (admin_id = ${+sesh.id} or  admin_id_renter = ${+sesh.id})`
     );
     socket.join(chatroom_id.chatroom_id);
     let chatMessages = await db.query(
@@ -23,7 +23,6 @@ module.exports = {
     let [messageFromDb] = await db.save_messages([
       message,
       +sesh.id,
-      sesh.firstName,
       chatroomId
     ]);
     io.in(chatroomId).emit('new message from sever', messageFromDb);

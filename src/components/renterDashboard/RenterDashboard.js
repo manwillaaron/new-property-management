@@ -66,7 +66,7 @@ class RenterDashboard extends Component {
           <div className="rows-renter">
             <Link
               className="picture-buttons"
-              to={`/propertymanager/chat/${this.props.admin.admin.id}`}
+              to={`/repair/form/${propObj.prop_id}`}
               style={{
                 backgroundImage:
                   'url(' +

@@ -52,132 +52,132 @@ select * from admin;
 
 insert into messages (message_content,  admin_id_messages, first_name, chatroom_id)
 values ('hey','127','34',(select distinct(chatroom_id) from chat_junction
-where admin_id_rent in ('127','34')));
+where admin_id_renter in ('127','34')));
 
 insert into messages (message_content,  admin_id_messages, first_name, chatroom_id)
 values ('hi','127','34',(select distinct(chatroom_id) from chat_junction
-where admin_id_rent in ('132','34')));
+where admin_id_renter in ('132','34')));
 
 insert into messages (message_content,  admin_id_messages, first_name, chatroom_id)
 values ('whats up?','127','34',(select distinct(chatroom_id) from chat_junction
-where admin_id_rent in ('127','34')));
+where admin_id_renter in ('127','34')));
 
 insert into messages (message_content,  admin_id_messages, first_name, chatroom_id)
 values ('nothing','127','34',(select distinct(chatroom_id) from chat_junction
-where admin_id_rent in ('132','34')));
+where admin_id_renter in ('132','34')));
 
 insert into messages (message_content,  admin_id_messages, first_name, chatroom_id)
 values ('You?','127','34',(select distinct(chatroom_id) from chat_junction
-where admin_id_rent in ('132','34')));
+where admin_id_renter in ('132','34')));
 
 insert into messages (message_content,  admin_id_messages, first_name, chatroom_id)
 values ('nothing','127','34',(select distinct(chatroom_id) from chat_junction
-where admin_id_rent in ('127','34')));
+where admin_id_renter in ('127','34')));
 
 insert into messages (message_content,  admin_id_messages, first_name, chatroom_id)
 values ('cool','127','34',(select distinct(chatroom_id) from chat_junction
-where admin_id_rent in ('132','34')));
+where admin_id_renter in ('132','34')));
 
 
 insert into messages (message_content,  admin_id_messages, first_name, chatroom_id)
 values ('nothing','127','34',(select distinct(chatroom_id) from chat_junction
-where admin_id_rent in ('127','34')));
+where admin_id_renter in ('127','34')));
 
 insert into messages (message_content,  admin_id_messages, first_name, chatroom_id)
 values ('hey','127','34',(select distinct(chatroom_id) from chat_junction
-where admin_id_rent in ('127','34')));
+where admin_id_renter in ('127','34')));
 
 insert into messages (message_content,  admin_id_messages, first_name, chatroom_id)
 values ('hi','127','34',(select distinct(chatroom_id) from chat_junction
-where admin_id_rent in ('132','34')));
+where admin_id_renter in ('132','34')));
 
 insert into messages (message_content,  admin_id_messages, first_name, chatroom_id)
 values ('whats up?','127','34',(select distinct(chatroom_id) from chat_junction
-where admin_id_rent in ('127','34')));
+where admin_id_renter in ('127','34')));
 
 insert into messages (message_content,  admin_id_messages, first_name, chatroom_id)
 values ('nothing','127','34',(select distinct(chatroom_id) from chat_junction
-where admin_id_rent in ('132','34')));
+where admin_id_renter in ('132','34')));
 
 insert into messages (message_content,  admin_id_messages, first_name, chatroom_id)
 values ('You?','127','34',(select distinct(chatroom_id) from chat_junction
-where admin_id_rent in ('132','34')));
+where admin_id_renter in ('132','34')));
 
 insert into messages (message_content,  admin_id_messages, first_name, chatroom_id)
 values ('nothing','127','34',(select distinct(chatroom_id) from chat_junction
-where admin_id_rent in ('127','34')));
+where admin_id_renter in ('127','34')));
 
 insert into messages (message_content,  admin_id_messages, first_name, chatroom_id)
 values ('cool','127','34',(select distinct(chatroom_id) from chat_junction
-where admin_id_rent in ('132','34')));
+where admin_id_renter in ('132','34')));
 
 
 insert into messages (message_content,  admin_id_messages, first_name, chatroom_id)
 values ('nothing','127','34',(select distinct(chatroom_id) from chat_junction
-where admin_id_rent in ('127','34')));
+where admin_id_renter in ('127','34')));
 
 insert into messages (message_content,  admin_id_messages, first_name, chatroom_id)
 values ('hey','127','34',(select distinct(chatroom_id) from chat_junction
-where admin_id_rent in ('127','34')));
+where admin_id_renter in ('127','34')));
 
 insert into messages (message_content,  admin_id_messages, first_name, chatroom_id)
 values ('hi','127','34',(select distinct(chatroom_id) from chat_junction
-where admin_id_rent in ('132','34')));
+where admin_id_renter in ('132','34')));
 
 insert into messages (message_content,  admin_id_messages, first_name, chatroom_id)
 values ('whats up?','127','34',(select distinct(chatroom_id) from chat_junction
-where admin_id_rent in ('127','34')));
+where admin_id_renter in ('127','34')));
 
 insert into messages (message_content,  admin_id_messages, first_name, chatroom_id)
 values ('nothing','127','34',(select distinct(chatroom_id) from chat_junction
-where admin_id_rent in ('132','34')));
+where admin_id_renter in ('132','34')));
 
 insert into messages (message_content,  admin_id_messages, first_name, chatroom_id)
 values ('You?','127','34',(select distinct(chatroom_id) from chat_junction
-where admin_id_rent in ('132','34')));
+where admin_id_renter in ('132','34')));
 
 insert into messages (message_content,  admin_id_messages, first_name, chatroom_id)
 values ('nothing','127','34',(select distinct(chatroom_id) from chat_junction
-where admin_id_rent in ('127','34')));
+where admin_id_renter in ('127','34')));
 
 insert into messages (message_content,  admin_id_messages, first_name, chatroom_id)
 values ('cool','127','34',(select distinct(chatroom_id) from chat_junction
-where admin_id_rent in ('132','34')));
+where admin_id_renter in ('132','34')));
 
 
 insert into messages (message_content,  admin_id_messages, first_name, chatroom_id)
 values ('nothing','127','34',(select distinct(chatroom_id) from chat_junction
-where admin_id_rent in ('127','34')));
+where admin_id_renter in ('127','34')));
 
 insert into messages (message_content,  admin_id_messages, first_name, chatroom_id)
 values ('hey','127','34',(select distinct(chatroom_id) from chat_junction
-where admin_id_rent in ('127','34')));
+where admin_id_renter in ('127','34')));
 
 insert into messages (message_content,  admin_id_messages, first_name, chatroom_id)
 values ('hi','127','34',(select distinct(chatroom_id) from chat_junction
-where admin_id_rent in ('132','34')));
+where admin_id_renter in ('132','34')));
 
 insert into messages (message_content,  admin_id_messages, first_name, chatroom_id)
 values ('whats up?','127','34',(select distinct(chatroom_id) from chat_junction
-where admin_id_rent in ('127','34')));
+where admin_id_renter in ('127','34')));
 
 insert into messages (message_content,  admin_id_messages, first_name, chatroom_id)
 values ('nothing','127','34',(select distinct(chatroom_id) from chat_junction
-where admin_id_rent in ('132','34')));
+where admin_id_renter in ('132','34')));
 
 insert into messages (message_content,  admin_id_messages, first_name, chatroom_id)
 values ('You?','127','34',(select distinct(chatroom_id) from chat_junction
-where admin_id_rent in ('132','34')));
+where admin_id_renter in ('132','34')));
 
 insert into messages (message_content,  admin_id_messages, first_name, chatroom_id)
 values ('nothing','127','34',(select distinct(chatroom_id) from chat_junction
-where admin_id_rent in ('127','34')));
+where admin_id_renter in ('127','34')));
 
 insert into messages (message_content,  admin_id_messages, first_name, chatroom_id)
 values ('cool','127','34',(select distinct(chatroom_id) from chat_junction
-where admin_id_rent in ('132','34')));
+where admin_id_renter in ('132','34')));
 
 
 insert into messages (message_content,  admin_id_messages, first_name, chatroom_id)
 values ('nothing','127','34',(select distinct(chatroom_id) from chat_junction
-where admin_id_rent in ('127','34')));
+where admin_id_renter in ('127','34')));
