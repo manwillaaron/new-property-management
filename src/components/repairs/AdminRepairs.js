@@ -12,11 +12,11 @@ function AdminRepairs(props) {
 
     let [repairRequests, setRepair] = useState([])
 
+    const [properties, setProperties] = useState([])
+
     useEffect(() => {
-        axios.get('/api/properties').then(res=> console.log(res.data))
-        axios.get(`/api/adminrepairs`).then(res => {
-            setRepair(ps => res.data)
-        })
+        axios.get('/api/properties').then(res=> setProperties(res.data))
+        axios.get(`/api/adminrepairs`).then(res => setRepair(ps => res.data))
     }, [])
 
     const handleChange = (target) => {
@@ -28,11 +28,7 @@ function AdminRepairs(props) {
     }
 
     const onSubmit = () => {
-        console.log('sdfasdfasdfasdfasdfasdf', inputsobj)
-        axios.post(`/api/new/repair`, inputsobj).then(res => {
-            console.log(res.data)
-            setRepair(ps => [ ...ps, res.data])
-        })
+        axios.post(`/api/new/repair`, inputsobj).then(res => setRepair(ps => [ ...ps, res.data]))
             .catch(err => alert(err, 'there is an error please message your property mananager'))
         stateSet((ps) => {
             return {
@@ -48,7 +44,7 @@ function AdminRepairs(props) {
             <div><p>repair form</p>
                 <textarea onChange={(e) => handleChange(e.target)} name='description' value={inputsobj.description} placeholder='whats broken' />
                 <input onChange={(e) => handleChange(e.target)} name='date' value={inputsobj.date} type='date' placeholder='when' />
-                <button onClick={() => onSubmit()}>Submit For Review</button>
+                <button onClick={() => onSubmit()}>Submit Repair</button>
             </div>
             <div>
                 {repairRequests.map(repair => (
