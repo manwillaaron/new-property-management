@@ -1,4 +1,4 @@
-insert into chat_junction (admin_id_pm, admin_id_rent)
+insert into chat_junction (admin_id, admin_id_renter)
 values ((select a.admin_id from admin a
     join properties_admin pa         
     on a.admin_id = pa.admin_id

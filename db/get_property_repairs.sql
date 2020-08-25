@@ -1,0 +1,1 @@
+select * from repairs where prop_id = $1;

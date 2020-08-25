@@ -97,6 +97,10 @@ app.put('/api/renter/edit/:admin_id', rc.editRenter);
 app.delete('/api/renter/delete/:admin_id', rc.deleteRenter);
 app.get('/api/all/renters', rc.getAllRenters);
 
+app.post('/api/new/repair', rc.addRepair)
+app.get('/api/repairs/:propId', rc.getPropertyRepairs)
+app.get(`/api/adminrepairs`, rc.getAdminRepairs)
+
 //stripe
 app.post('/api/payment', sc.pay);
 

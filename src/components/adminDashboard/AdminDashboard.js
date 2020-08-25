@@ -57,24 +57,22 @@ const AdminDashboard = _ => (
             {' '}
             <h1 className="centered-admin">Expenses</h1>
          </Link>
-          <Link
-            to={`/propertymanager/chat/`}
-            className="picture-buttons-admin"
-            style={{
-              backgroundImage:
-                'url(' +
-                `https://images.unsplash.com/photo-1530811761207-8d9d22f0a141?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60` +
-                ')',
-              backgroundPosition: 'center',
-              backgroundSize: 'cover',
-              backgroundRepeat: 'no-repeat'
-            }}
-          >
-            <div className="centered2-admin">
-              <h1>Messages</h1>
-              <div className="msg-counter">2</div>
-            </div>
-          </Link>
+         <Link
+              className="picture-buttons"
+              to={`/admin/repairs`}
+              style={{
+                backgroundImage:
+                  'url(' +
+                  `https://images.unsplash.com/photo-1516822669470-73d1771e95a3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60` +
+                  ')',
+                backgroundPosition: 'center',
+                backgroundSize: 'cover',
+                backgroundRepeat: 'no-repeat'
+              }}
+            >
+              {' '}
+              <h1 class="centered">Repairs</h1>
+            </Link>
         </div>
       </div>
     </div>

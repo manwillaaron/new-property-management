@@ -47,13 +47,13 @@ class CheckoutForm extends Component {
           currency="USD"
           panelLabel="Submit Payment"
           locale="en"
-          allowRememberMe
+          allowRememberMe         
           billingAddress={false}
           zipCode={false}
         >
           <button className="payRent">Pay With Card</button>
         </StripeCheckout>
-        <input value={`$${this.state.amount}`} />
+        <input value={'$'+ `${this.state.amount}`} />
       </div>
     );
   }

@@ -62,5 +62,26 @@ module.exports = {
     const db = req.app.get('db');
     let admin = await db.delete_renter(+admin_id);
     res.status(200).send(admin);
+  },
+  async addRepair(req, res){
+    const db = req.app.get('db')
+    const {id} = req.session.admin
+    const {date, description} = req.body
+    const [property] = await db.get_properties_by_admin(id)
+    const propId = property.prop_id 
+    const [newRepair] = await db.add_repair(propId, id, description, date)
+    res.status(200).send(newRepair)
+  },
+   async getPropertyRepairs(req,res){
+    const db = req.app.get('db')
+    const {propId} = req.params
+    const repairs = await db.get_property_repairs(propId)
+    res.status(200).send(repairs)
+  },
+  async getAdminRepairs(req, res){
+    const db = req.app.get('db')
+    const {id} = req.session.admin
+    const repairs = await db.get_repairs_admin(id)
+    res.status(200).send(repairs)
   }
 };

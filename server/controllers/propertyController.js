@@ -1,6 +1,7 @@
 module.exports = {
   async getProperties(req, res) {
     const db = req.app.get('db');
+    if(!req.session.admin) return res.sendStatus(401)
     let properties = await db.get_properties_by_admin(req.session.admin.id);
     if (properties.length > 0) {
       res.status(200).send(properties);

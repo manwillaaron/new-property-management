@@ -18,6 +18,8 @@ import ExpenseInputs from './components/ExpenseInputs/ExpenseInputs';
 import Expenses from './components/expenses/Expenses';
 import ExpenseDash from './components/ExpenseDash/ExpenseDash';
 import Header from './components/header/Header';
+import RepairForm from './components/repairs/RepairForm';
+import AdminRepairs from './components/repairs/AdminRepairs';
  
 const Routes = ({ history, location }) => {
   const [  , call] = useAxios('/api/admin', history.push, location.pathname);
@@ -53,6 +55,8 @@ const Routes = ({ history, location }) => {
         <Route path="/input/expenses" component={ExpenseInputs} />
         <Route path="/expense/report/:id" component={Expenses} />
         <Route path="/dash/expense" component={ExpenseDash} />
+        <Route path="/repair/form/:prop_id" component={RepairForm}/>
+        <Route path="/admin/repairs" component={AdminRepairs}/>
       </Switch>
     </div>
   );
