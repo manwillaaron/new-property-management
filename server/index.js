@@ -87,7 +87,7 @@ app.post('/api/property/add', pc.addProperty);
 //expenses
 app.get('/api/expenses/:id', ec.getExpenses)
 app.get('/api/current/expenses', ec.getAdminExpenses)
-app.post('/api/add/expense', ec.addExpense)
+// app.post('/api/add/expense', ec.addExpense)
 
 //renters
 app.get('/api/renters/:propertyId', rc.getRenters);
