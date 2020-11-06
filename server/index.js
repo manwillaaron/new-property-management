@@ -39,6 +39,7 @@ app.use((req, res, next) => {
   next();
 });
 
+const server = app.listen(SERVER_PORT, () => console.log(`Listening on ${SERVER_PORT}`))
 massive({
   connectionString: CONNECTION_STRING,
   ssl: {rejectUnauthorized: false}
@@ -46,9 +47,7 @@ massive({
   app.set('db', db);
   console.log('db is all good');
 
-  io = require('socket.io')(
-    app.listen(SERVER_PORT, () => console.log(`Listening on ${SERVER_PORT}`))
-  );
+  io = require('socket.io')(server);
 
   io.on('connection', async socket => {
     console.log('A connection happened', socket.id);
