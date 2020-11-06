@@ -33,11 +33,6 @@
     padding: 10px;
 
   }
-.centered:hover {
-    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-
-  }
-
 
 .centered1 {
     position: absolute;
@@ -49,7 +44,7 @@
     padding: 10px;
   }
 
-.centered1:hover {
+.centered1:hover,.picture-buttons:hover,.picture-buttons1:hover, .picture-buttons2:hover, .picture-buttons:hover {
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   }
 
@@ -58,38 +53,41 @@
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     display: flex;
-    width: 49%;
-    height: 400px;
+    width: 48%;
+    height: 300px;
     position: relative;
     text-align: center;
     color: rgb(47, 53, 50);
     font-size: 40px;
-    font-weight: bolder
+    font-weight: bolder;
+    margin:5px
 
 }
 .picture-buttons1{
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     display: flex;
-    width: 49%;
-    height: 400px;
+    width: 48%;
+    height: 300px;
     position: relative;
     text-align: center;
     color: rgb(114, 128, 121);
     font-size: 40px;
-    font-weight: bolder
+    font-weight: bolder;
+    margin:5px
 
 }
 .picture-buttons2{
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     display: flex;
-    width: 49%;
-    height: 400px;
+    width: 48%;
+    height: 300px;
     position: relative;
     text-align: center;
     color: rgb(191, 211, 201);
     font-size: 40px;
-    font-weight: bolder
+    font-weight: bolder;
+    margin:5px
 
 }

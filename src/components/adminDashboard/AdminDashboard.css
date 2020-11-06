@@ -40,7 +40,7 @@
     padding: 30px;
   }
   
-  .centered-admin:hover {
+  .-admin:hover {
       box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   
     }
@@ -56,10 +56,7 @@
    
   }
   
-  .centered1-admin:hover {
-      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   
-    }
   .centered2-admin {
     position: absolute;
     top: 45%;
@@ -94,7 +91,7 @@
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     display: flex;
     width: 49%;
-    height: 400px;
+    height: 300px;
     position: relative;
     text-align: center;
     color: white;
