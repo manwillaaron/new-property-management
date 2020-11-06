@@ -13,6 +13,7 @@ function Login(props) {
   const [show, toggleShow] = useState(false);
 
   const login = () => {
+    console.log('hit login')
     axios
       .post('/api/login', inputsObj)
       .then(res => props.history.push('/loading'))
