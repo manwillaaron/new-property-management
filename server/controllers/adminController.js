@@ -63,7 +63,6 @@ module.exports = {
     if(req.session && req.session.admin){
       res.status(200).send(req.session.admin.renterCheck);
     } else {
-      console.log('no  admin')
       res.sendStatus(404)
     }
   }

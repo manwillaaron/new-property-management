@@ -15,37 +15,38 @@
 
 }
 
+.property-facts{
+ font-size: large;
+}
+.title-line{
+    border: 1px solid black;
+    width: 200px
+}
+
 .info-container-rent{
-    width: 30%;
+    height: 100%;
+    width: auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    margin-left: 10px;
 }
 
 .property-images{
-    width: 60%;
+    width: 200px;
     border-radius: 5px;
     align-self: center;
     margin-left: 50px;
 }
 
 .prop-img-renter{
-    width:80%;
+    width:100%;
     border-radius: 5px;
 }
 
 .general-info-items-prop-renter{
-    width: 100%;
-    max-width: 250px;
-    height: 75px;
-    font-size: 10px;
-    padding:10px;
-    margin-top: 10px;
-    border: solid 1px;
-    border-radius: 5px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
+display: flex;
+
 }
 
 .general-information{
