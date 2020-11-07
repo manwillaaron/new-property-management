@@ -63,7 +63,7 @@ const AdminDashboard = _ => (
               style={{
                 backgroundImage:
                   'url(' +
-                  `https://images.unsplash.com/photo-1516822669470-73d1771e95a3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60` +
+                  `https://images.unsplash.com/photo-1586864387789-628af9feed72?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80` +
                   ')',
                 backgroundPosition: 'center',
                 backgroundSize: 'cover',
