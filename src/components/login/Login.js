@@ -36,8 +36,8 @@ function Login(props) {
           </button>
           <SweetAlert
             show={show}
-            title="login incorrect"
-            text="check username and password"
+            title="Incorrect Login"
+            text="Please check username and password"
             onConfirm={() => toggleShow(false)}
           />
           <button className="button">

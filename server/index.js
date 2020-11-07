@@ -39,7 +39,7 @@ app.use((req, res, next) => {
   next();
 });
 
-const server = app.listen(SERVER_PORT, () => console.log(`Listening on ${SERVER_PORT}`))
+
 massive({
   connectionString: CONNECTION_STRING,
   ssl: {rejectUnauthorized: false}
@@ -132,3 +132,4 @@ app.get('*', (req, res)=>{
     res.sendFile(path.join(__dirname, '../build/index.html'));
 });
 
+var server = app.listen(SERVER_PORT, () => console.log(`Listening on ${SERVER_PORT}`))
