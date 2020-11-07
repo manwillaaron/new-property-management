@@ -58,7 +58,7 @@ const AdminDashboard = _ => (
             <h1 className="centered-admin">Expenses</h1>
          </Link>
          <Link
-              className="picture-buttons"
+              className="picture-buttons-admin"
               to={`/admin/repairs`}
               style={{
                 backgroundImage:
