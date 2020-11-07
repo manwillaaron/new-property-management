@@ -6,7 +6,7 @@ import {
   getProperties
 } from '../../redux/propertiesReducer';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import useInputs from '../../customHooks/useInputs';
 
 const PropertyInputs = props => {
@@ -31,39 +31,43 @@ const PropertyInputs = props => {
     };
   }, []);
   return (
-    <div>
-      <div>
-        {inputsArr.map(inp => (
-          <input
-            key={inp}
-            placeholder={`${inp}`}
-            name={`${inp}`}
-            value={inputsObj[inp]}
-            onChange={e => input(e.target)}
-          />
-        ))}
-      </div>
+    <div className='popup'>
+
+      {inputsArr.map(inp => (
+        <input
+          className='add-property-inputs'
+          key={inp}
+          placeholder={`${inp}`}
+          name={`${inp}`}
+          value={inputsObj[inp]}
+          onChange={e => input(e.target)}
+        />
+      ))}
+
       <div>
         {editing ? (
           <button
             onClick={() => {
               props
-                .editProperties(props.match.params.prop_id, {inputsObj})
+                .editProperties(props.match.params.prop_id, { inputsObj })
                 .then(() => props.history.goBack());
             }}
           >
             Save Changes
           </button>
         ) : (
-          <button
-            onClick={() => {
-              console.log(inputsObj);
-              props.addProperty(inputsObj);
-            }}
-          >
-            <Link to={`/`}>Add</Link>
-          </button>
-        )}
+            <div>
+              <button
+                onClick={() => {
+                  console.log(inputsObj);
+                  props.addProperty(inputsObj);
+                }}
+              >
+                <Link to={`/`}>Add</Link>
+              </button>
+              <button><Link to={`/propertiespreview`}>cancel</Link></button>
+            </div>
+          )}
       </div>
     </div>
   );
@@ -75,8 +79,8 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, {
+export default withRouter(connect(mapStateToProps, {
   editProperties,
   addProperty,
   getProperties
-})(PropertyInputs);
+})(PropertyInputs));

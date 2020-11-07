@@ -3,8 +3,8 @@ import './PropertiesPreview.css';
 import { connect } from 'react-redux';
 import { getProperties } from '../../redux/propertiesReducer';
 import PropertyPreview from '../propertyPreview/PropertyPreview';
-import Header from '../header/Header';
-import { Link } from 'react-router-dom';
+import { Link, Route, Switch } from 'react-router-dom';
+import PropertyInputs from '../propertyInput/PropertyInputs';
 
 function PropertiesPreview(props) {
   React.useEffect(() => {
@@ -13,17 +13,19 @@ function PropertiesPreview(props) {
 
   const { properties } = props;
   return (
-    <div className="map-container">
-      {/* <Header /> */}
-      <Link to={'/add/propertyinput'}>Add Property</Link>
+    <div>
+      <Link to={'/propertiespreview/add'}>Add Property</Link>
       <div className="prop-container">
         {props.properties[0] &&
           properties.map(property => (
-            <div key={property.prop_id}>
-              <PropertyPreview {...property} />
-            </div>
+            <PropertyPreview
+              {...property}
+              key={property.prop_id} />
           ))}
       </div>
+      <Switch>
+        <Route path="/propertiespreview/add" component={PropertyInputs} />
+      </Switch>
     </div>
   );
 }

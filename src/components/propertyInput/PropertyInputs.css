@@ -1,6 +1,22 @@
-@media only screen and (min-width: 600px){
+.popup{
+    background-color: rgb(233, 233, 233);
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    right: 31%;
+    bottom: 20%;
+}
+
+.add-property-inputs{
+    width: 100px
+}
+
+/* @media only screen and (min-width: 600px){
     .property-inputs{
         width:25%;
     }
 
-}
+} */
