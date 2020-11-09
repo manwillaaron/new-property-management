@@ -4,7 +4,7 @@ import { register, getAdmin } from '../../redux/adminReducer';
 import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
 import SweetAlert from 'sweetalert2-react';
-import  Input  from '../input/Input'
+import Input from '../input/Input'
 
 class Register extends Component {
   constructor() {
@@ -76,24 +76,33 @@ class Register extends Component {
       { text: 'last_name', val: last_name },
       { text: 'phone_number', val: phone_number },
       { text: 'email', val: email }
-    ].map((input, i) => <input key={i} text={input.text} val={input.val} handleChange={(e)=>this.handleChange(e)} />);
+    ].map((input, i) => <input
+      className='input1 margin-bottom'
+      key={i}
+      placeholder={input.text}
+      val={input.val}
+      handleChange={(e) => this.handleChange(e)}
+          />);
 
     return (
-      <div className="register-page">
-        <h1 className="title">RentOps</h1>
-        <div className="username-password-container">{inputArr}</div>
-        <div className="register-button">
-          <button onClick={() => this.registerAdmin()}>Submit</button>
+      <div className="login-page">
+        <div className="login-box">{inputArr}
+        <div className="button-container">
+          <button 
+          className='button'
+          onClick={() => this.registerAdmin()}
+          >Submit</button>
         </div>
         <SweetAlert
-        show={this.state.show}
-        title="invalid entries"
-        text="all fields are required"
-        onConfirm={() => this.setState({ show: false })}
-      />
-        <div style={{'display':'flex'}}>
+          show={this.state.show}
+          title="invalid entries"
+          text="all fields are required"
+          onConfirm={() => this.setState({ show: false })}
+        />
+        <div style={{ 'display': 'flex' }}>
           <p>Already have an account?</p>
           <Link to="/login">click here to login</Link>
+        </div>
         </div>
       </div>
     );

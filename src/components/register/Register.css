@@ -44,8 +44,6 @@ input{
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-
-    
 }
 
 .moreinfo-boxes {
@@ -55,5 +53,10 @@ input{
     justify-content: space-around;
 }
 
-.register-button {
+.register-inputs{
+    width: 100px;
+}
+
+.margin-bottom{
+    margin-bottom: 5px;
 }
