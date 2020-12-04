@@ -30,19 +30,20 @@ const PropertyInputs = props => {
       switchEdit(false);
     };
   }, []);
+  console.log({props})
   return (
     <div className='popup'>
-
-      {inputsArr.map(inp => (
-        <input
-          className='add-property-inputs'
-          key={inp}
-          placeholder={`${inp}`}
-          name={`${inp}`}
-          value={inputsObj[inp]}
-          onChange={e => input(e.target)}
-        />
-      ))}
+      <h1>{props.popupText}</h1>
+      <section className='inputs-section'>{inputsArr.map(inp => (
+      <input
+      className='add-property-inputs'
+      key={inp}
+      placeholder={`${inp}`}
+      name={`${inp}`}
+      value={inputsObj[inp]}
+      onChange={e => input(e.target)}
+      />
+      ))}</section>
 
       <div>
         {editing ? (
@@ -65,7 +66,7 @@ const PropertyInputs = props => {
               >
                 <Link to={`/`}>Add</Link>
               </button>
-              <button><Link to={`/propertiespreview`}>cancel</Link></button>
+              {!props.popupText.includes('No')&&<button><Link to={`/propertiespreview`}>cancel</Link></button>}
             </div>
           )}
       </div>

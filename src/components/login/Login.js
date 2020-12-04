@@ -16,17 +16,18 @@ function Login(props) {
     console.log('hit login')
     axios
       .post('/api/login', inputsObj)
-      .then(res => props.history.push('/loading'))
-      .catch(err => toggleShow(true));
+      .then( _ => props.history.push('/loading'))
+      .catch( _ => toggleShow(true));
   };
   console.log(inputsObj, inputsArr)
   return (
     <div className="login-page">
       <div className="login-box">
           {inputsArr.map(inp => {
+            console.log(inp)
             return(
         <div className="username">
-           <Input className="input1" key={inp} val={inputsObj[inp]}
+           <Input className="input1" key={inp} type={inp === 'Password'? 'password':'text'} val={inputsObj[inp]}
           text={inp} handleChange={input} />
         </div> 
           )})}

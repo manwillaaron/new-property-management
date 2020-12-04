@@ -5,7 +5,9 @@ import { connect } from 'react-redux';
 import { signout, getAdmin } from '../../redux/adminReducer';
 import logo from './Logo-rentops.png';
 
-const Header = (props) => (
+const Header = (props) => {
+  console.log(props.history)
+  return(
   <div className="header">
     <div className="spacer-header" />
     <div className="header-title-container">
@@ -22,13 +24,13 @@ const Header = (props) => (
         {' '}
         Log Out
       </button>
-      <button className="header-buttons" onClick={() => props.history.goBack()}>
+     { props.history.location.pathname !=='/login' && <button className="header-buttons" onClick={() => props.history.goBack()}>
         {' '}
         Go Back
-      </button>
+      </button>}
     </div>
   </div>
-);
+  )};
 
 function mapStateToProps(state) {
   return { admin: state.admin };

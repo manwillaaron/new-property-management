@@ -3,11 +3,11 @@ const saltRounds = 10;
 
 module.exports = {
   async login(req, res) {
-    let { username, password } = req.body;
+    let { Username, Password } = req.body;
     const db = req.app.get('db');
-    const [existingAdmin] = await db.get_admin_by_username(username);
+    const [existingAdmin] = await db.get_admin_by_username([Username]);
     if (!existingAdmin) return res.status(404).send('username not found');
-    let result = bcrypt.compareSync(password, existingAdmin.password);
+    let result = bcrypt.compareSync(Password, existingAdmin.password);
     if (result) {
       req.session.admin = {
         username: existingAdmin.username,

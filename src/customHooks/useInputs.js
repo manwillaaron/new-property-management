@@ -61,7 +61,7 @@ var obj = {
     img_url5: '',
     property_name: ''
   },
-  login: { username: '', password: '' },
+  login: { Username: '', Password: '' },
   register: {
     username: '',
     password: '',

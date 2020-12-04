@@ -7,7 +7,7 @@ const Input = props => {
     <input
     style={{"width":"200px"}}
       placeholder={props.text.split('_').join(' ')}
-      type={props.text==='password'&& 'password'}
+      type={props.text==='Password'&& 'password'}
       value={props.val}
       onChange={e => props.handleChange(e.target)}
       name={props.text}

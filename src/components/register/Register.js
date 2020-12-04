@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import './Register.css';
 import { register, getAdmin } from '../../redux/adminReducer';
 import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
 import SweetAlert from 'sweetalert2-react';
-import Input from '../input/Input'
+
 
 class Register extends Component {
   constructor() {
@@ -56,7 +56,7 @@ class Register extends Component {
     }
     await this.props
       .register(username, password, first_name, last_name, phone_number, email)
-      .then(_ => this.props.history.push('/renter'));
+      .then(_ => this.props.history.push('/loading'));
   };
 
   render() {
@@ -69,21 +69,23 @@ class Register extends Component {
       email
     } = this.state;
 
-    const inputArr = [
-      { text: 'username', val: username },
-      { text: 'password', val: password },
-      { text: 'first_name', val: first_name },
-      { text: 'last_name', val: last_name },
-      { text: 'phone_number', val: phone_number },
-      { text: 'email', val: email }
-    ].map((input, i) => <input
+    const arr = [
+      { text: 'Username', val: username },
+      { text: 'Password', val: password },
+      { text: 'First_name', val: first_name },
+      { text: 'Last_name', val: last_name },
+      { text: 'Phone_number', val: phone_number },
+      { text: 'Email', val: email }
+    ]
+    const inputArr = arr.map((input, i) => <input
       className='input1 margin-bottom'
       key={i}
       placeholder={input.text}
       val={input.val}
-      handleChange={(e) => this.handleChange(e)}
+      type={input.text === "Password"&& 'password'}
+      name={input.text.toLowerCase()}
+      onChange={(e) => this.handleChange(e)}
           />);
-
     return (
       <div className="login-page">
         <div className="login-box">{inputArr}
